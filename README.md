@@ -118,7 +118,9 @@ for T2I in sdxl cascade; do
     python scripts/run_vspr.py --set t2i.backend=$T2I llm.reasoner=$LLM vspr.use_vqa=false  # w/o VQA
   done
   python scripts/run_baselines.py --set t2i.backend=$T2I \
-      --methods none gpt4 beautiful magic promptist \
+      --methods none gpt4=data/baseline_prompts/gpt4o.json \
+      beautiful=data/baseline_prompts/beautiful.json magic=data/baseline_prompts/magic.json \
+      promptist=data/baseline_prompts/promptist.json \
       sspo=data/baseline_prompts/sspo.json pag=data/baseline_prompts/pag.json
   python scripts/evaluate.py --eval-root outputs/eval/$T2I \
       --unidet-python /path/to/unidet-env/bin/python
@@ -130,8 +132,14 @@ python scripts/make_tables.py --eval-root outputs/eval --out outputs/tables.md
   best of rounds 1..*k*+1 (Table 3), and `iter1` is also the *w/o iterative* ablation (Table 2).
   For `vspr_<llm>_novqa` (*w/o VQA*) there is no φ_sco: it is the last round, and `iter<k>` is
   round *k*+1.
+* **The baseline prompts of the paper are included** in `data/baseline_prompts/`
+  (`{description: prompt}`, UTF-8), so the images can be regenerated without any API call:
+  `gpt4o.json` (GPT-4o), `beautiful.json` (BeautifulPrompt), `magic.json` (MagicPrompt),
+  `promptist.json` (Promptist), `sspo.json`, `pag.json`. Writing `gpt4`, `beautiful`, `magic` or
+  `promptist` without `=path` runs the rewriter again instead; its sampled output will differ.
 * `gpt4` is the GPT-4o baseline of the paper (`gpt-4o`, the system prompt of the original
-  `gpt_prompt_generation.py`). It reads the key from the `OPENAI_API_KEY` environment variable.
+  `gpt_prompt_generation.py`). Regenerating it reads the key from the `OPENAI_API_KEY`
+  environment variable.
 * SSPO and PAG have no T2I-ready release. Their prompts are produced with the authors' code and
   imported as a JSON file `{description: prompt}`. The prompts used in the paper are included:
   `data/baseline_prompts/pag.json` and `data/baseline_prompts/sspo.json` (the `description`

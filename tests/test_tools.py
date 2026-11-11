@@ -6,6 +6,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+import pytest
+
 from tests.test_pipeline import DESCS, FakeLLM, make
 from vspr.baselines.rewriters import ExternalPrompts
 from vspr.io_utils import read_json, write_json
@@ -40,10 +42,11 @@ def test_external_prompts_txt_dir(tmp_path):
     assert ext("a cat behind a dog") == "a cat behind a dog, 8k"
 
 
-def test_shipped_pag_prompts_cover_dataset():
+@pytest.mark.parametrize("name", ["gpt4o", "beautiful", "magic", "promptist", "sspo", "pag"])
+def test_shipped_baseline_prompts_cover_dataset(name):
     descs = [l.strip() for l in (REPO / "data/t2i_compbench/3d_spatial.txt").read_text().splitlines() if l.strip()]
-    pag = ExternalPrompts(REPO / "data/baseline_prompts/pag.json", name="pag")
-    assert all(d in pag.table for d in descs)
+    ext = ExternalPrompts(REPO / "data/baseline_prompts" / f"{name}.json", name=name)
+    assert all(ext.table.get(d, "").strip() for d in descs)
 
 
 def test_provenance_written(tmp_path):
