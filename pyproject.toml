@@ -1,0 +1,19 @@
+[project]
+name = "vspr"
+version = "1.0.0"
+description = "VQA-guided self-reasoning prompt refinement (VSPR) for text-to-image generation"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+authors = [{ name = "Chang-Hsian Ma" }, { name = "Huang-Chia Shih" }]
+
+[tool.setuptools]
+packages = ["vspr", "vspr.eval", "vspr.baselines"]
+
+[tool.setuptools.package-data]
+"vspr.baselines" = ["gpt_system_prompt.txt"]
+"vspr.eval" = ["unidet_labels.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

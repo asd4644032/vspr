@@ -1,0 +1,2181 @@
+{
+ "descriptions": [
+  "a desk in front of a painting",
+  "a train behind a phone",
+  "a refrigerator hidden by a book",
+  "a cat in front of a book",
+  "a cow behind a butterfly"
+ ],
+ "rounds": [
+  {
+   "description": "a desk in front of a painting",
+   "round": 1,
+   "prompt": "a desk in front of a painting",
+   "judge": [
+    {
+     "count_a": {
+      "0": 0.003432248451951191,
+      "1": 0.9944741422910217,
+      "2": 0.0019447375656316062,
+      "3": 0.00014887169139537608
+     },
+     "count_b": {
+      "0": 0.0027408944128247486,
+      "1": 0.9968712538519061,
+      "2": 0.0002713832272815383,
+      "3": 0.00011646850798742083
+     },
+     "separate_p": 0.9995668649799638,
+     "picture_p": 0.0006053746685065215,
+     "closer": "desk",
+     "closer_order": [
+      "desk",
+      "painting"
+     ],
+     "stacked_p": 0.00032005145424752356,
+     "overall_p": 0.9037171346284351,
+     "describe": "The desk is in front of the painting."
+    },
+    {
+     "count_a": {
+      "0": 0.0026143388791852675,
+      "1": 0.9964422530068257,
+      "2": 0.00085417257822563,
+      "3": 8.92355357634288e-05
+     },
+     "count_b": {
+      "0": 0.024104690938493403,
+      "1": 0.24352857623856272,
+      "2": 0.08348461742567323,
+      "3": 0.6488821153972706
+     },
+     "separate_p": 0.9993186523349524,
+     "picture_p": 0.0010729704998354817,
+     "closer": "painting",
+     "closer_order": [
+      "painting",
+      "desk"
+     ],
+     "stacked_p": 0.00030646013223917484,
+     "overall_p": 0.6957064803577583,
+     "describe": "The desk and the painting are in front of each other, with the painting hanging on the wall above the desk."
+    },
+    {
+     "count_a": {
+      "0": 0.005249530537003166,
+      "1": 0.9926515310061989,
+      "2": 0.0016983250166687919,
+      "3": 0.0004006134401290907
+     },
+     "count_b": {
+      "0": 0.007781542763979568,
+      "1": 0.004209573697183414,
+      "2": 0.0489501778791082,
+      "3": 0.9390587056597289
+     },
+     "separate_p": 0.9990745545061209,
+     "picture_p": 0.0016094019394444063,
+     "closer": "desk",
+     "closer_order": [
+      "desk",
+      "painting"
+     ],
+     "stacked_p": 0.00024923874141375704,
+     "overall_p": 0.9181038751062628,
+     "describe": "The desk is in front of the painting."
+    },
+    {
+     "count_a": {
+      "0": 0.0042277019021996366,
+      "1": 0.9946453586392772,
+      "2": 0.0008918855249358094,
+      "3": 0.0002350539335875135
+     },
+     "count_b": {
+      "0": 0.004823083403685474,
+      "1": 0.00487097196716803,
+      "2": 0.022914610626302012,
+      "3": 0.9673913340028445
+     },
+     "separate_p": 0.9996088021911957,
+     "picture_p": 0.004345413080229612,
+     "closer": "painting",
+     "closer_order": [
+      "painting",
+      "desk"
+     ],
+     "stacked_p": 0.0010702330110494748,
+     "overall_p": 0.9756778964966039,
+     "describe": "The desk is in front of the painting."
+    }
+   ],
+   "diagnose": [
+    {
+     "fails": [],
+     "ok": true,
+     "p_rel": 1.0,
+     "presence": 0.9938362645658291,
+     "overall": 0.9037171346284351,
+     "combined": 0.9637965545866978
+    },
+    {
+     "fails": [
+      "crowd",
+      "reversed"
+     ],
+     "ok": false,
+     "p_rel": 0.0,
+     "presence": 0.9733439880130126,
+     "overall": 0.6957064803577583,
+     "combined": 0.5563501561235903
+    },
+    {
+     "fails": [
+      "crowd"
+     ],
+     "ok": false,
+     "p_rel": 1.0,
+     "presence": 0.9870097761453818,
+     "overall": 0.9181038751062628,
+     "combined": 0.9640411424656755
+    },
+    {
+     "fails": [
+      "crowd",
+      "reversed"
+     ],
+     "ok": false,
+     "p_rel": 0.0,
+     "presence": 0.9909696052529953,
+     "overall": 0.9756778964966039,
+     "combined": 0.6555491672498664
+    }
+   ],
+   "feedback": "Diagnosis of the 4 images generated from the current prompt (target: 'a desk in front of a painting'):\n- image 1: matches the description. Seen: The desk is in front of the painting.\n- image 2: problems: crowd, reversed. Seen: The desk and the painting are in front of each other, with the painting hanging on the wall above the desk.\n- image 3: problems: crowd. Seen: The desk is in front of the painting.\n- image 4: problems: crowd, reversed. Seen: The desk is in front of the painting.\nSummary: 1/4 images match the description.\nProblems, most frequent first, with the fix to apply:\n- crowd in 3/4 images -> there are many copies of an object, overlapping each other: ask for exactly one desk and one painting (e.g. 'a single desk', 'one painting') and avoid plural words\n- reversed in 2/4 images -> the depth order is reversed: put the object that must be in front in the foreground and the other in the background, explicitly ('X in the foreground, Y behind it in the background')",
+   "dms": 0.873301346647265,
+   "ops": 0.9862899084943046,
+   "score05": 0.9297956275707848
+  },
+  {
+   "description": "a desk in front of a painting",
+   "round": 2,
+   "prompt": "a single desk in the foreground, a painting behind it in the background, photo",
+   "judge": [
+    {
+     "count_a": {
+      "0": 0.00480684636870231,
+      "1": 0.9937117012945653,
+      "2": 0.0012806990410652857,
+      "3": 0.00020075329566705442
+     },
+     "count_b": {
+      "0": 0.001468483522296335,
+      "1": 0.002731313941455731,
+      "2": 0.11472580802472257,
+      "3": 0.8810743945115254
+     },
+     "separate_p": 0.9986602323968867,
+     "picture_p": 0.0017890996197974724,
+     "closer": "desk",
+     "closer_order": [
+      "desk",
+      "painting"
+     ],
+     "stacked_p": 0.00017080223085153126,
+     "overall_p": 0.7340487589445243,
+     "describe": "The desk and the painting are in front of each other, with the desk in front of the painting."
+    },
+    {
+     "count_a": {
+      "0": 0.003990772207187034,
+      "1": 0.9932278864545726,
+      "2": 0.0026119212219578624,
+      "3": 0.00016942011628254478
+     },
+     "count_b": {
+      "0": 0.0017621781973677524,
+      "1": 0.017921088469982836,
+      "2": 0.8109012491949498,
+      "3": 0.16941548413769963
+     },
+     "separate_p": 0.9989658224347603,
+     "picture_p": 0.0022006834579761715,
+     "closer": "painting",
+     "closer_order": [
+      "painting",
+      "desk"
+     ],
+     "stacked_p": 0.00021372783139485946,
+     "overall_p": 0.8403036907893768,
+     "describe": "The desk and the painting are in front of each other, with the desk in front of the painting."
+    },
+    {
+     "count_a": {
+      "0": 0.0063591096362088685,
+      "1": 0.7727595408571784,
+      "2": 0.21607434956745802,
+      "3": 0.0048069999391546344
+     },
+     "count_b": {
+      "0": 0.001282254281317773,
+      "1": 0.0031152911908732023,
+      "2": 0.8546231731573617,
+      "3": 0.14097928137044727
+     },
+     "separate_p": 0.9994940288511575,
+     "picture_p": 0.001772821785119381,
+     "closer": "desk",
+     "closer_order": [
+      "desk",
+      "painting"
+     ],
+     "stacked_p": 0.0002758140097667744,
+     "overall_p": 0.40814973586110953,
+     "describe": "The desk is in front of the painting."
+    },
+    {
+     "count_a": {
+      "0": 0.007310885950068949,
+      "1": 0.9805717594258735,
+      "2": 0.011163004320151928,
+      "3": 0.0009543503039057159
+     },
+     "count_b": {
+      "0": 0.0010944570724935147,
+      "1": 0.009496940599219073,
+      "2": 0.9851467739458665,
+      "3": 0.004261828382420987
+     },
+     "separate_p": 0.9993882959998853,
+     "picture_p": 0.005225116758769231,
+     "closer": "painting",
+     "closer_order": [
+      "painting",
+      "desk"
+     ],
+     "stacked_p": 0.0005484013677382114,
+     "overall_p": 0.9179903892530992,
+     "describe": "The desk is in front of the painting."
+    }
+   ],
+   "diagnose": [
+    {
+     "fails": [
+      "crowd"
+     ],
+     "ok": false,
+     "p_rel": 1.0,
+     "presence": 0.993731728883688,
+     "overall": 0.7340487589445243,
+     "combined": 0.9071707389039667
+    },
+    {
+     "fails": [
+      "reversed"
+     ],
+     "ok": false,
+     "p_rel": 0.0,
+     "presence": 0.9942540820472193,
+     "overall": 0.8403036907893768,
+     "combined": 0.6115192576121987
+    },
+    {
+     "fails": [],
+     "ok": true,
+     "p_rel": 1.0,
+     "presence": 0.9923667900780295,
+     "overall": 0.40814973586110953,
+     "combined": 0.7976277720057228
+    },
+    {
+     "fails": [
+      "reversed"
+     ],
+     "ok": false,
+     "p_rel": 0.0,
+     "presence": 0.9916026584282718,
+     "overall": 0.9179903892530992,
+     "combined": 0.6365310158937904
+    }
+   ],
+   "feedback": "Diagnosis of the 4 images generated from the current prompt (target: 'a desk in front of a painting'):\n- image 1: problems: crowd. Seen: The desk and the painting are in front of each other, with the desk in front of the painting.\n- image 2: problems: reversed. Seen: The desk and the painting are in front of each other, with the desk in front of the painting.\n- image 3: matches the description. Seen: The desk is in front of the painting.\n- image 4: problems: reversed. Seen: The desk is in front of the painting.\nSummary: 1/4 images match the description.\nProblems, most frequent first, with the fix to apply:\n- reversed in 2/4 images -> the depth order is reversed: put the object that must be in front in the foreground and the other in the background, explicitly ('X in the foreground, Y behind it in the background')\n- crowd in 1/4 images -> there are many copies of an object, overlapping each other: ask for exactly one desk and one painting (e.g. 'a single desk', 'one painting') and avoid plural words",
+   "dms": 0.7251231437120275,
+   "ops": 0.9929888148593021,
+   "score05": 0.8590559792856648
+  },
+  {
+   "description": "a desk in front of a painting",
+   "round": 3,
+   "prompt": "a single desk in the foreground, a painting behind it in the background, photo",
+   "judge": [
+    {
+     "count_a": {
+      "0": 0.00480684636870231,
+      "1": 0.9937117012945653,
+      "2": 0.0012806990410652857,
+      "3": 0.00020075329566705442
+     },
+     "count_b": {
+      "0": 0.001468483522296335,
+      "1": 0.002731313941455731,
+      "2": 0.11472580802472257,
+      "3": 0.8810743945115254
+     },
+     "separate_p": 0.9986602323968867,
+     "picture_p": 0.0017890996197974724,
+     "closer": "desk",
+     "closer_order": [
+      "desk",
+      "painting"
+     ],
+     "stacked_p": 0.00017080223085153126,
+     "overall_p": 0.7340487589445243,
+     "describe": "The desk and the painting are in front of each other, with the desk in front of the painting."
+    },
+    {
+     "count_a": {
+      "0": 0.003990772207187034,
+      "1": 0.9932278864545726,
+      "2": 0.0026119212219578624,
+      "3": 0.00016942011628254478
+     },
+     "count_b": {
+      "0": 0.0017621781973677524,
+      "1": 0.017921088469982836,
+      "2": 0.8109012491949498,
+      "3": 0.16941548413769963
+     },
+     "separate_p": 0.9989658224347603,
+     "picture_p": 0.0022006834579761715,
+     "closer": "painting",
+     "closer_order": [
+      "painting",
+      "desk"
+     ],
+     "stacked_p": 0.00021372783139485946,
+     "overall_p": 0.8403036907893768,
+     "describe": "The desk and the painting are in front of each other, with the desk in front of the painting."
+    },
+    {
+     "count_a": {
+      "0": 0.0063591096362088685,
+      "1": 0.7727595408571784,
+      "2": 0.21607434956745802,
+      "3": 0.0048069999391546344
+     },
+     "count_b": {
+      "0": 0.001282254281317773,
+      "1": 0.0031152911908732023,
+      "2": 0.8546231731573617,
+      "3": 0.14097928137044727
+     },
+     "separate_p": 0.9994940288511575,
+     "picture_p": 0.001772821785119381,
+     "closer": "desk",
+     "closer_order": [
+      "desk",
+      "painting"
+     ],
+     "stacked_p": 0.0002758140097667744,
+     "overall_p": 0.40814973586110953,
+     "describe": "The desk is in front of the painting."
+    },
+    {
+     "count_a": {
+      "0": 0.007310885950068949,
+      "1": 0.9805717594258735,
+      "2": 0.011163004320151928,
+      "3": 0.0009543503039057159
+     },
+     "count_b": {
+      "0": 0.0010944570724935147,
+      "1": 0.009496940599219073,
+      "2": 0.9851467739458665,
+      "3": 0.004261828382420987
+     },
+     "separate_p": 0.9993882959998853,
+     "picture_p": 0.005225116758769231,
+     "closer": "painting",
+     "closer_order": [
+      "painting",
+      "desk"
+     ],
+     "stacked_p": 0.0005484013677382114,
+     "overall_p": 0.9179903892530992,
+     "describe": "The desk is in front of the painting."
+    }
+   ],
+   "diagnose": [
+    {
+     "fails": [
+      "crowd"
+     ],
+     "ok": false,
+     "p_rel": 1.0,
+     "presence": 0.993731728883688,
+     "overall": 0.7340487589445243,
+     "combined": 0.9071707389039667
+    },
+    {
+     "fails": [
+      "reversed"
+     ],
+     "ok": false,
+     "p_rel": 0.0,
+     "presence": 0.9942540820472193,
+     "overall": 0.8403036907893768,
+     "combined": 0.6115192576121987
+    },
+    {
+     "fails": [],
+     "ok": true,
+     "p_rel": 1.0,
+     "presence": 0.9923667900780295,
+     "overall": 0.40814973586110953,
+     "combined": 0.7976277720057228
+    },
+    {
+     "fails": [
+      "reversed"
+     ],
+     "ok": false,
+     "p_rel": 0.0,
+     "presence": 0.9916026584282718,
+     "overall": 0.9179903892530992,
+     "combined": 0.6365310158937904
+    }
+   ],
+   "feedback": "Diagnosis of the 4 images generated from the current prompt (target: 'a desk in front of a painting'):\n- image 1: problems: crowd. Seen: The desk and the painting are in front of each other, with the desk in front of the painting.\n- image 2: problems: reversed. Seen: The desk and the painting are in front of each other, with the desk in front of the painting.\n- image 3: matches the description. Seen: The desk is in front of the painting.\n- image 4: problems: reversed. Seen: The desk is in front of the painting.\nSummary: 1/4 images match the description.\nProblems, most frequent first, with the fix to apply:\n- reversed in 2/4 images -> the depth order is reversed: put the object that must be in front in the foreground and the other in the background, explicitly ('X in the foreground, Y behind it in the background')\n- crowd in 1/4 images -> there are many copies of an object, overlapping each other: ask for exactly one desk and one painting (e.g. 'a single desk', 'one painting') and avoid plural words",
+   "dms": 0.7251231437120275,
+   "ops": 0.9929888148593021,
+   "score05": 0.8590559792856648
+  },
+  {
+   "description": "a train behind a phone",
+   "round": 1,
+   "prompt": "a train behind a phone",
+   "judge": [
+    {
+     "count_a": {
+      "0": 0.013080724504300301,
+      "1": 0.04794149673820291,
+      "2": 0.538785595062047,
+      "3": 0.4001921836954496
+     },
+     "count_b": {
+      "0": 0.9959408661500713,
+      "1": 0.0011302272206397328,
+      "2": 0.0004987355041732031,
+      "3": 0.0024301711251157186
+     },
+     "separate_p": 0.1594041360073449,
+     "picture_p": 0.0030392381734165993,
+     "closer": "train",
+     "closer_order": [
+      "train",
+      "phone"
+     ],
+     "stacked_p": 0.00019948900280740737,
+     "overall_p": 7.241039257664743e-05,
+     "describe": "The train is in front of the phone, and they do not overlap or touch."
+    },
+    {
+     "count_a": {
+      "0": 0.018758845019126807,
+      "1": 0.39593080164625216,
+      "2": 0.5821953850220318,
+      "3": 0.0031149683125892345
+     },
+     "count_b": {
+      "0": 0.011593725458038898,
+      "1": 0.9869416574096836,
+      "2": 0.0013485244905904886,
+      "3": 0.00011609264168694201
+     },
+     "separate_p": 0.8923069130418974,
+     "picture_p": 0.4356007591462816,
+     "closer": "phone",
+     "closer_order": [
+      "phone",
+      "train"
+     ],
+     "stacked_p": 0.002058123124169375,
+     "overall_p": 0.5660133278104057,
+     "describe": "The phone is in front of the train, and they do not overlap or touch."
+    },
+    {
+     "count_a": {
+      "0": 0.03077433301235655,
+      "1": 0.9315970071523143,
+      "2": 0.037264868113557274,
+      "3": 0.0003637917217718343
+     },
+     "count_b": {
+      "0": 0.012245408959259473,
+      "1": 0.6477942388892143,
+      "2": 0.33970990524147626,
+      "3": 0.00025044691004998744
+     },
+     "separate_p": 0.8817710177970233,
+     "picture_p": 0.21438029175586992,
+     "closer": "phone",
+     "closer_order": [
+      "train",
+      "phone"
+     ],
+     "stacked_p": 0.0017307233285028653,
+     "overall_p": 0.493490186738139,
+     "describe": "The phone is in front of the train, and they do not overlap or touch."
+    },
+    {
+     "count_a": {
+      "0": 0.009025698730228975,
+      "1": 0.9904522117273533,
+      "2": 0.000472353403698077,
+      "3": 4.973613871972709e-05
+     },
+     "count_b": {
+      "0": 0.0013789820635148008,
+      "1": 0.08867762020545425,
+      "2": 0.8925273411336843,
+      "3": 0.017416056597346706
+     },
+     "separate_p": 0.9967495340696083,
+     "picture_p": 0.0054753944828853955,
+     "closer": "phone",
+     "closer_order": [
+      "phone",
+      "train"
+     ],
+     "stacked_p": 8.481633638016794e-05,
+     "overall_p": 0.3219025897433967,
+     "describe": "The train is in front of the phone, and they do not overlap or touch."
+    }
+   ],
+   "diagnose": [
+    {
+     "fails": [
+      "missing_b"
+     ],
+     "ok": false,
+     "p_rel": 0.0,
+     "presence": 0.004006037438311657,
+     "overall": 7.241039257664743e-05,
+     "combined": 0.0013594826102961016
+    },
+    {
+     "fails": [],
+     "ok": true,
+     "p_rel": 1.0,
+     "presence": 0.9698649144218962,
+     "overall": 0.5660133278104057,
+     "combined": 0.8352477188847326
+    },
+    {
+     "fails": [],
+     "ok": true,
+     "p_rel": 1.0,
+     "presence": 0.9573571023215686,
+     "overall": 0.493490186738139,
+     "combined": 0.8027347971270921
+    },
+    {
+     "fails": [],
+     "ok": true,
+     "p_rel": 1.0,
+     "presence": 0.989607765482916,
+     "overall": 0.3219025897433967,
+     "combined": 0.7670393735697428
+    }
+   ],
+   "feedback": "Diagnosis of the 4 images generated from the current prompt (target: 'a train behind a phone'):\n- image 1: problems: missing_b. Seen: The train is in front of the phone, and they do not overlap or touch.\n- image 2: matches the description. Seen: The phone is in front of the train, and they do not overlap or touch.\n- image 3: matches the description. Seen: The phone is in front of the train, and they do not overlap or touch.\n- image 4: matches the description. Seen: The train is in front of the phone, and they do not overlap or touch.\nSummary: 3/4 images match the description.\nProblems, most frequent first, with the fix to apply:\n- missing_b in 1/4 images -> the phone is missing: name the phone early in the prompt, make it a clearly visible, reasonably large subject, and keep the prompt short so it is not dropped",
+   "dms": 0.3453696286711295,
+   "ops": 0.7302089549161731,
+   "score05": 0.5377892917936513
+  },
+  {
+   "description": "a train behind a phone",
+   "round": 2,
+   "prompt": "A large, colorful phone in front of a train, photo",
+   "judge": [
+    {
+     "count_a": {
+      "0": 0.05392041637105165,
+      "1": 0.9066874549660211,
+      "2": 0.039114485711801546,
+      "3": 0.00027764295112565516
+     },
+     "count_b": {
+      "0": 0.011070820709465192,
+      "1": 0.9884689968081808,
+      "2": 0.00039576150570355684,
+      "3": 6.442097665039933e-05
+     },
+     "separate_p": 0.989901504347378,
+     "picture_p": 0.31053338801211894,
+     "closer": "phone",
+     "closer_order": [
+      "train",
+      "phone"
+     ],
+     "stacked_p": 0.00021679846912487697,
+     "overall_p": 0.9973864968923218,
+     "describe": "The train is behind the phone, and they do not overlap or touch."
+    },
+    {
+     "count_a": {
+      "0": 0.01236565939058967,
+      "1": 0.9686137212614931,
+      "2": 0.01890460104352224,
+      "3": 0.00011601830439498571
+     },
+     "count_b": {
+      "0": 0.011111557558225321,
+      "1": 0.967738816547662,
+      "2": 0.019181521745043357,
+      "3": 0.0019681041490693736
+     },
+     "separate_p": 0.9797767359562423,
+     "picture_p": 0.003794415574305907,
+     "closer": "phone",
+     "closer_order": [
+      "phone",
+      "train"
+     ],
+     "stacked_p": 0.0003200842998436205,
+     "overall_p": 0.9947957362585642,
+     "describe": "The train is behind the phone, and they do not overlap or touch."
+    },
+    {
+     "count_a": {
+      "0": 0.016096848585832494,
+      "1": 0.8390425545069887,
+      "2": 0.14409710423549074,
+      "3": 0.0007634926716880409
+     },
+     "count_b": {
+      "0": 0.9111716244404447,
+      "1": 0.06016584414754182,
+      "2": 0.012312980155423127,
+      "3": 0.01634955125659028
+     },
+     "separate_p": 0.7578984969551373,
+     "picture_p": 0.015776948566018533,
+     "closer": "phone",
+     "closer_order": [
+      "train",
+      "phone"
+     ],
+     "stacked_p": 0.0007404764758943453,
+     "overall_p": 0.24319461506737067,
+     "describe": "The train and the phone are touching, with the phone in front of the train."
+    },
+    {
+     "count_a": {
+      "0": 0.00856771387983313,
+      "1": 0.9887117312409706,
+      "2": 0.002605322503036829,
+      "3": 0.00011523237615952199
+     },
+     "count_b": {
+      "0": 0.005270179713374796,
+      "1": 0.9610730198450437,
+      "2": 0.03212939348576921,
+      "3": 0.001527406955812374
+     },
+     "separate_p": 0.9930151190608225,
+     "picture_p": 0.07403233822044936,
+     "closer": "phone",
+     "closer_order": [
+      "phone",
+      "train"
+     ],
+     "stacked_p": 0.0007315730529269309,
+     "overall_p": 0.11650305871464353,
+     "describe": "The train is in front of the phone, and they do not overlap or touch."
+    }
+   ],
+   "diagnose": [
+    {
+     "fails": [],
+     "ok": true,
+     "p_rel": 1.0,
+     "presence": 0.9356057061817066,
+     "overall": 0.9973864968923218,
+     "combined": 0.956199303085245
+    },
+    {
+     "fails": [],
+     "ok": true,
+     "p_rel": 1.0,
+     "presence": 0.976660184787249,
+     "overall": 0.9947957362585642,
+     "combined": 0.9827053686110206
+    },
+    {
+     "fails": [
+      "missing_b"
+     ],
+     "ok": false,
+     "p_rel": 1.0,
+     "presence": 0.08739851864804761,
+     "overall": 0.24319461506737067,
+     "combined": 0.13933055078782194
+    },
+    {
+     "fails": [],
+     "ok": true,
+     "p_rel": 1.0,
+     "presence": 0.9862072597986715,
+     "overall": 0.11650305871464353,
+     "combined": 0.6963058594373289
+    }
+   ],
+   "feedback": "Diagnosis of the 4 images generated from the current prompt (target: 'a train behind a phone'):\n- image 1: matches the description. Seen: The train is behind the phone, and they do not overlap or touch.\n- image 2: matches the description. Seen: The train is behind the phone, and they do not overlap or touch.\n- image 3: problems: missing_b. Seen: The train and the phone are touching, with the phone in front of the train.\n- image 4: matches the description. Seen: The train is in front of the phone, and they do not overlap or touch.\nSummary: 3/4 images match the description.\nProblems, most frequent first, with the fix to apply:\n- missing_b in 1/4 images -> the phone is missing: name the phone early in the prompt, make it a clearly visible, reasonably large subject, and keep the prompt short so it is not dropped",
+   "dms": 0.587969976733225,
+   "ops": 0.7464679173539187,
+   "score05": 0.6672189470435719
+  },
+  {
+   "description": "a train behind a phone",
+   "round": 3,
+   "prompt": "A colorful, large phone in front of a train, photo",
+   "judge": [
+    {
+     "count_a": {
+      "0": 0.07350441979158484,
+      "1": 0.8969525917814517,
+      "2": 0.029195574453361507,
+      "3": 0.00034741397360200314
+     },
+     "count_b": {
+      "0": 0.026944797368765063,
+      "1": 0.9717645246195401,
+      "2": 0.0011186287349509133,
+      "3": 0.00017204927674394053
+     },
+     "separate_p": 0.7050652962519265,
+     "picture_p": 0.30027623012684784,
+     "closer": "phone",
+     "closer_order": [
+      "train",
+      "phone"
+     ],
+     "stacked_p": 0.0005617306031724335,
+     "overall_p": 0.9970180982335147,
+     "describe": "The phone is in front of the train, and they do not overlap or touch."
+    },
+    {
+     "count_a": {
+      "0": 0.015723917641038164,
+      "1": 0.9516461459890342,
+      "2": 0.03208254945906687,
+      "3": 0.0005473869108606639
+     },
+     "count_b": {
+      "0": 0.004225168229270254,
+      "1": 0.9955521279850409,
+      "2": 0.0001989913580973797,
+      "3": 2.371242759151496e-05
+     },
+     "separate_p": 0.9977775635889443,
+     "picture_p": 0.07761436073456436,
+     "closer": "phone",
+     "closer_order": [
+      "phone",
+      "train"
+     ],
+     "stacked_p": 0.00022495169253219317,
+     "overall_p": 0.9879312716752774,
+     "describe": "The train is behind the phone, and they do not overlap or touch."
+    },
+    {
+     "count_a": {
+      "0": 0.016209409598023843,
+      "1": 0.6302845322870937,
+      "2": 0.35103776090503586,
+      "3": 0.0024682972098466582
+     },
+     "count_b": {
+      "0": 0.8697794674093527,
+      "1": 0.07235603639315491,
+      "2": 0.023527872846176315,
+      "3": 0.03433662335131601
+     },
+     "separate_p": 0.7733892182006329,
+     "picture_p": 0.022962977072178262,
+     "closer": "phone",
+     "closer_order": [
+      "train",
+      "phone"
+     ],
+     "stacked_p": 0.0018698245397215313,
+     "overall_p": 0.4105770420783528,
+     "describe": "The train is in front of the phone booth, and they do not overlap or touch."
+    },
+    {
+     "count_a": {
+      "0": 0.026441734036946087,
+      "1": 0.9500812324952079,
+      "2": 0.023067377645024808,
+      "3": 0.00040965582282114307
+     },
+     "count_b": {
+      "0": 0.0052806104568620055,
+      "1": 0.9938809119015601,
+      "2": 0.0007627549073648194,
+      "3": 7.572273421302029e-05
+     },
+     "separate_p": 0.9895018792939859,
+     "picture_p": 0.06770067323102011,
+     "closer": "phone",
+     "closer_order": [
+      "phone",
+      "train"
+     ],
+     "stacked_p": 0.0007700375111358638,
+     "overall_p": 0.7630061426190086,
+     "describe": "The train is in front of the phone, and they do not overlap or touch."
+    }
+   ],
+   "diagnose": [
+    {
+     "fails": [],
+     "ok": true,
+     "p_rel": 1.0,
+     "presence": 0.9015313445366432,
+     "overall": 0.9970180982335147,
+     "combined": 0.9333602624356003
+    },
+    {
+     "fails": [],
+     "ok": true,
+     "p_rel": 1.0,
+     "presence": 0.980117350326948,
+     "overall": 0.9879312716752774,
+     "combined": 0.982721990776391
+    },
+    {
+     "fails": [
+      "missing_b"
+     ],
+     "ok": false,
+     "p_rel": 1.0,
+     "presence": 0.12810973463981262,
+     "overall": 0.4105770420783528,
+     "combined": 0.22226550378599272
+    },
+    {
+     "fails": [],
+     "ok": true,
+     "p_rel": 1.0,
+     "presence": 0.9684172840034447,
+     "overall": 0.7630061426190086,
+     "combined": 0.899946903541966
+    }
+   ],
+   "feedback": "Diagnosis of the 4 images generated from the current prompt (target: 'a train behind a phone'):\n- image 1: matches the description. Seen: The phone is in front of the train, and they do not overlap or touch.\n- image 2: matches the description. Seen: The train is behind the phone, and they do not overlap or touch.\n- image 3: problems: missing_b. Seen: The train is in front of the phone booth, and they do not overlap or touch.\n- image 4: matches the description. Seen: The train is in front of the phone, and they do not overlap or touch.\nSummary: 3/4 images match the description.\nProblems, most frequent first, with the fix to apply:\n- missing_b in 1/4 images -> the phone is missing: name the phone early in the prompt, make it a clearly visible, reasonably large subject, and keep the prompt short so it is not dropped",
+   "dms": 0.7896331386515384,
+   "ops": 0.7445439283767121,
+   "score05": 0.7670885335141253
+  },
+  {
+   "description": "a refrigerator hidden by a book",
+   "round": 1,
+   "prompt": "a refrigerator hidden by a book",
+   "judge": [
+    {
+     "count_a": {
+      "0": 0.05139761624565611,
+      "1": 0.8987729210389603,
+      "2": 0.04698749766735445,
+      "3": 0.002841965048029231
+     },
+     "count_b": {
+      "0": 0.08689267928056635,
+      "1": 0.005216826946038961,
+      "2": 0.0028383149101427457,
+      "3": 0.905052178863252
+     },
+     "separate_p": 0.9154577429596892,
+     "picture_p": 0.10783189016636353,
+     "b_covers_a_p": 0.724373732833442,
+     "a_covers_b_p": 0.9025193099447583,
+     "overall_p": 0.003589610517246162,
+     "describe": "The refrigerator and the bookshelf are in front of each other, with the refrigerator partially overlapping the bookshelf."
+    },
+    {
+     "count_a": {
+      "0": 0.042098102622111416,
+      "1": 0.9529722196107124,
+      "2": 0.004318205321131956,
+      "3": 0.0006114724460442421
+     },
+     "count_b": {
+      "0": 0.03148549000446911,
+      "1": 0.006493967751490884,
+      "2": 0.0039561754999964905,
+      "3": 0.9580643667440435
+     },
+     "separate_p": 0.602287393087206,
+     "picture_p": 0.00318791143317371,
+     "b_covers_a_p": 0.422633028691891,
+     "a_covers_b_p": 0.5330792089644365,
+     "overall_p": 0.0022414086039968337,
+     "describe": "The refrigerator and the book are not directly overlapping or touching; the bookshelf is behind the refrigerator."
+    },
+    {
+     "count_a": {
+      "0": 0.021597873620345744,
+      "1": 0.9704437457647386,
+      "2": 0.007567493253130674,
+      "3": 0.0003908873617850477
+     },
+     "count_b": {
+      "0": 0.13039295916175572,
+      "1": 0.03597044055798971,
+      "2": 0.034730475205172466,
+      "3": 0.7989061250750822
+     },
+     "separate_p": 0.9915314364152592,
+     "picture_p": 0.00617392881232667,
+     "b_covers_a_p": 0.5817790780385689,
+     "a_covers_b_p": 0.8064737466088722,
+     "overall_p": 0.004430464033883223,
+     "describe": "The refrigerator and the book are in front of each other, with the refrigerator being closer to the camera."
+    },
+    {
+     "count_a": {
+      "0": 0.016228422494862154,
+      "1": 0.9818276990538672,
+      "2": 0.0016384264542553654,
+      "3": 0.00030545199701521885
+     },
+     "count_b": {
+      "0": 0.11553586282610222,
+      "1": 0.013125325371660735,
+      "2": 0.00878316571833403,
+      "3": 0.8625556460839031
+     },
+     "separate_p": 0.9020825266711501,
+     "picture_p": 0.021811730863546593,
+     "b_covers_a_p": 0.5361515294350986,
+     "a_covers_b_p": 0.7832255438061342,
+     "overall_p": 0.0005676687474394951,
+     "describe": "The refrigerator is in front of the bookshelves, and the books are on the shelves behind the refrigerator."
+    }
+   ],
+   "diagnose": [
+    {
+     "fails": [
+      "crowd"
+     ],
+     "ok": false,
+     "p_rel": 0.39749309208396866,
+     "presence": 0.8661757810579971,
+     "overall": 0.003589610517246162,
+     "combined": 0.40468809369207775
+    },
+    {
+     "fails": [
+      "crowd",
+      "occlusion_reversed"
+     ],
+     "ok": false,
+     "p_rel": 0.3099845883832324,
+     "presence": 0.9277418867627351,
+     "overall": 0.0022414086039968337,
+     "combined": 0.40585632742025385
+    },
+    {
+     "fails": [
+      "crowd"
+     ],
+     "ok": false,
+     "p_rel": 0.3471843016563589,
+     "presence": 0.8508253778708571,
+     "overall": 0.004430464033883223,
+     "combined": 0.38354968551744717
+    },
+    {
+     "fails": [
+      "crowd"
+     ],
+     "ok": false,
+     "p_rel": 0.32618774283295077,
+     "presence": 0.8701106794742862,
+     "overall": 0.0005676687474394951,
+     "combined": 0.3848325955914294
+    }
+   ],
+   "feedback": "Diagnosis of the 4 images generated from the current prompt (target: 'a refrigerator hidden by a book'):\n- image 1: problems: crowd. Seen: The refrigerator and the bookshelf are in front of each other, with the refrigerator partially overlapping the bookshelf.\n- image 2: problems: crowd, occlusion_reversed. Seen: The refrigerator and the book are not directly overlapping or touching; the bookshelf is behind the refrigerator.\n- image 3: problems: crowd. Seen: The refrigerator and the book are in front of each other, with the refrigerator being closer to the camera.\n- image 4: problems: crowd. Seen: The refrigerator is in front of the bookshelves, and the books are on the shelves behind the refrigerator.\nSummary: 0/4 images match the description.\nProblems, most frequent first, with the fix to apply:\n- crowd in 4/4 images -> there are many copies of an object, overlapping each other: ask for exactly one refrigerator and one book (e.g. 'a single refrigerator', 'one book') and avoid plural words\n- occlusion_reversed in 1/4 images -> the wrong object is covered: the refrigerator must be partly hidden BY the book (the book in front, covering part of the refrigerator), not the other way round",
+   "dms": 0.0027072879756414284,
+   "ops": 0.8787134312914688,
+   "score05": 0.44071035963355515
+  },
+  {
+   "description": "a refrigerator hidden by a book",
+   "round": 2,
+   "prompt": "one refrigerator, a single book, the book in front of the refrigerator, the book covering part of the refrigerator, photo",
+   "judge": [
+    {
+     "count_a": {
+      "0": 0.009369837087748838,
+      "1": 0.9874940955570939,
+      "2": 0.0030090941333845013,
+      "3": 0.00012697322177273384
+     },
+     "count_b": {
+      "0": 0.08227440790642412,
+      "1": 0.033964348501868295,
+      "2": 0.03046850778089114,
+      "3": 0.8532927358108164
+     },
+     "separate_p": 0.9993374771540011,
+     "picture_p": 0.001082348344877216,
+     "b_covers_a_p": 0.07873522352890333,
+     "a_covers_b_p": 0.8179683282284332,
+     "overall_p": 0.0010868955199599022,
+     "describe": "The refrigerator is in front of the bookshelf, and the book is on the bookshelf, not touching the refrigerator."
+    },
+    {
+     "count_a": {
+      "0": 0.012979374187337663,
+      "1": 0.9848656792316101,
+      "2": 0.0019483112119572368,
+      "3": 0.0002066353690950825
+     },
+     "count_b": {
+      "0": 0.029003517717212518,
+      "1": 0.008314559734371656,
+      "2": 0.007307604143937579,
+      "3": 0.9553743184044782
+     },
+     "separate_p": 0.9333346957352421,
+     "picture_p": 0.014785889177491275,
+     "b_covers_a_p": 0.6367695531411433,
+     "a_covers_b_p": 0.6681345887981559,
+     "overall_p": 0.007629893777648075,
+     "describe": "The refrigerator and the book are overlapping; the refrigerator is in front of the book."
+    },
+    {
+     "count_a": {
+      "0": 0.010390336748493883,
+      "1": 0.9766938078885808,
+      "2": 0.012335676972194847,
+      "3": 0.0005801783907303967
+     },
+     "count_b": {
+      "0": 0.05262471535784807,
+      "1": 0.03130914470042561,
+      "2": 0.031675971478313296,
+      "3": 0.8843901684634131
+     },
+     "separate_p": 0.9975073122950329,
+     "picture_p": 0.005615853285949916,
+     "b_covers_a_p": 0.5839159961553987,
+     "a_covers_b_p": 0.7990956137277088,
+     "overall_p": 0.007859490156599952,
+     "describe": "The refrigerator and the book are in front of each other, with the refrigerator partially overlapping the bookshelf."
+    },
+    {
+     "count_a": {
+      "0": 0.022073775826786834,
+      "1": 0.9709475744963991,
+      "2": 0.00637270315946935,
+      "3": 0.0006059465173445944
+     },
+     "count_b": {
+      "0": 0.15179029485188852,
+      "1": 0.3694793900442698,
+      "2": 0.18917142574987633,
+      "3": 0.2895588893539653
+     },
+     "separate_p": 0.9983307026027692,
+     "picture_p": 0.0028258653540403187,
+     "b_covers_a_p": 0.4764891408322063,
+     "a_covers_b_p": 0.5798559023601914,
+     "overall_p": 0.000709729831681814,
+     "describe": "The refrigerator and the book are in front of each other, with the refrigerator being the main object and the book placed on top of it."
+    }
+   ],
+   "diagnose": [
+    {
+     "fails": [
+      "crowd",
+      "occlusion_reversed"
+     ],
+     "ok": false,
+     "p_rel": 0.0465337639475888,
+     "presence": 0.9091266528044011,
+     "overall": 0.0010868955199599022,
+     "combined": 0.3175062111281408
+    },
+    {
+     "fails": [
+      "crowd"
+     ],
+     "ok": false,
+     "p_rel": 0.42404567136757165,
+     "presence": 0.9583935556046506,
+     "overall": 0.007629893777648075,
+     "combined": 0.4574753627010089
+    },
+    {
+     "fails": [
+      "crowd"
+     ],
+     "ok": false,
+     "p_rel": 0.3506136404987863,
+     "presence": 0.9375317364075199,
+     "overall": 0.007859490156599952,
+     "combined": 0.4247008805830363
+    },
+    {
+     "fails": [
+      "occlusion_reversed"
+     ],
+     "ok": false,
+     "p_rel": 0.3383416204711607,
+     "presence": 0.829486514262567,
+     "overall": 0.000709729831681814,
+     "combined": 0.3702820184962734
+    }
+   ],
+   "feedback": "Diagnosis of the 4 images generated from the current prompt (target: 'a refrigerator hidden by a book'):\n- image 1: problems: crowd, occlusion_reversed. Seen: The refrigerator is in front of the bookshelf, and the book is on the bookshelf, not touching the refrigerator.\n- image 2: problems: crowd. Seen: The refrigerator and the book are overlapping; the refrigerator is in front of the book.\n- image 3: problems: crowd. Seen: The refrigerator and the book are in front of each other, with the refrigerator partially overlapping the bookshelf.\n- image 4: problems: occlusion_reversed. Seen: The refrigerator and the book are in front of each other, with the refrigerator being the main object and the book placed on top of it.\nSummary: 0/4 images match the description.\nProblems, most frequent first, with the fix to apply:\n- crowd in 3/4 images -> there are many copies of an object, overlapping each other: ask for exactly one refrigerator and one book (e.g. 'a single refrigerator', 'one book') and avoid plural words\n- occlusion_reversed in 2/4 images -> the wrong object is covered: the refrigerator must be partly hidden BY the book (the book in front, covering part of the refrigerator), not the other way round",
+   "dms": 0.004321502321472436,
+   "ops": 0.9086346147697846,
+   "score05": 0.4564780585456285
+  },
+  {
+   "description": "a refrigerator hidden by a book",
+   "round": 3,
+   "prompt": "one single refrigerator, a book, the book in front of the refrigerator, the book covering part of the refrigerator, photo",
+   "judge": [
+    {
+     "count_a": {
+      "0": 0.007352207160291273,
+      "1": 0.9918427168691959,
+      "2": 0.0007391742639184172,
+      "3": 6.590170659440228e-05
+     },
+     "count_b": {
+      "0": 0.08020840512414143,
+      "1": 0.03555447959673609,
+      "2": 0.034210209551483635,
+      "3": 0.850026905727639
+     },
+     "separate_p": 0.9993951773221701,
+     "picture_p": 0.0011533525937198752,
+     "b_covers_a_p": 0.11471692173659016,
+     "a_covers_b_p": 0.7551340869572428,
+     "overall_p": 0.000856317774167938,
+     "describe": "The refrigerator is in front of the bookshelf, and they do not overlap or touch."
+    },
+    {
+     "count_a": {
+      "0": 0.006102296395414332,
+      "1": 0.9932843180744826,
+      "2": 0.0005506499547126958,
+      "3": 6.273557539035762e-05
+     },
+     "count_b": {
+      "0": 0.0321134360935719,
+      "1": 0.012514475044600565,
+      "2": 0.006704395514807942,
+      "3": 0.9486676933470196
+     },
+     "separate_p": 0.9436874412687887,
+     "picture_p": 0.003970497634190376,
+     "b_covers_a_p": 0.5021315056139491,
+     "a_covers_b_p": 0.6444039341975442,
+     "overall_p": 0.002627235932187972,
+     "describe": "The refrigerator and the books are in front of each other, with the refrigerator partially overlapping the books."
+    },
+    {
+     "count_a": {
+      "0": 0.00847911041223364,
+      "1": 0.9859804952713446,
+      "2": 0.005255649210224231,
+      "3": 0.00028474510619752645
+     },
+     "count_b": {
+      "0": 0.030490708214794607,
+      "1": 0.013893787029165024,
+      "2": 0.010508585320164928,
+      "3": 0.9451069194358754
+     },
+     "separate_p": 0.9980603317162032,
+     "picture_p": 0.003982349543811857,
+     "b_covers_a_p": 0.5746507969889573,
+     "a_covers_b_p": 0.8866930593685908,
+     "overall_p": 0.04728774949553706,
+     "describe": "The refrigerator is in front of the bookshelf, and the books are scattered on the floor in front of the refrigerator."
+    },
+    {
+     "count_a": {
+      "0": 0.009458112294413514,
+      "1": 0.9897969509287091,
+      "2": 0.0006543921375076339,
+      "3": 9.054463936969357e-05
+     },
+     "count_b": {
+      "0": 0.6007216036988371,
+      "1": 0.06061296136062886,
+      "2": 0.06549774883289274,
+      "3": 0.27316768610764136
+     },
+     "separate_p": 0.9953112620887543,
+     "picture_p": 0.0011323878048763386,
+     "b_covers_a_p": 0.0931793261620506,
+     "a_covers_b_p": 0.39114505333288674,
+     "overall_p": 0.0002059876361660911,
+     "describe": "The refrigerator is in front of the book, which is on a shelf above the counter."
+    }
+   ],
+   "diagnose": [
+    {
+     "fails": [
+      "crowd",
+      "occlusion_reversed"
+     ],
+     "ok": false,
+     "p_rel": 0.07140359275953742,
+     "presence": 0.9130290965260367,
+     "overall": 0.000856317774167938,
+     "combined": 0.3263596573620527
+    },
+    {
+     "fails": [
+      "crowd"
+     ],
+     "ok": false,
+     "p_rel": 0.3403437467628666,
+     "presence": 0.961980233216332,
+     "overall": 0.002627235932187972,
+     "combined": 0.4306704753443942
+    },
+    {
+     "fails": [
+      "crowd"
+     ],
+     "ok": false,
+     "p_rel": 0.31988136036358855,
+     "presence": 0.9612887154544723,
+     "overall": 0.04728774949553706,
+     "combined": 0.43869160231725085
+    },
+    {
+     "fails": [
+      "missing_b"
+     ],
+     "ok": false,
+     "p_rel": 0.07495600991146173,
+     "presence": 0.3955019763922132,
+     "overall": 0.0002059876361660911,
+     "combined": 0.14178440469694556
+    }
+   ],
+   "feedback": "Diagnosis of the 4 images generated from the current prompt (target: 'a refrigerator hidden by a book'):\n- image 1: problems: crowd, occlusion_reversed. Seen: The refrigerator is in front of the bookshelf, and they do not overlap or touch.\n- image 2: problems: crowd. Seen: The refrigerator and the books are in front of each other, with the refrigerator partially overlapping the books.\n- image 3: problems: crowd. Seen: The refrigerator is in front of the bookshelf, and the books are scattered on the floor in front of the refrigerator.\n- image 4: problems: missing_b. Seen: The refrigerator is in front of the book, which is on a shelf above the counter.\nSummary: 0/4 images match the description.\nProblems, most frequent first, with the fix to apply:\n- crowd in 3/4 images -> there are many copies of an object, overlapping each other: ask for exactly one refrigerator and one book (e.g. 'a single refrigerator', 'one book') and avoid plural words\n- missing_b in 1/4 images -> the book is missing: name the book early in the prompt, make it a clearly visible, reasonably large subject, and keep the prompt short so it is not dropped\n- occlusion_reversed in 1/4 images -> the wrong object is covered: the refrigerator must be partly hidden BY the book (the book in front, covering part of the refrigerator), not the other way round",
+   "dms": 0.012744322709514765,
+   "ops": 0.8079500053972635,
+   "score05": 0.4103471640533891
+  },
+  {
+   "description": "a cat in front of a book",
+   "round": 1,
+   "prompt": "a cat in front of a book",
+   "judge": [
+    {
+     "count_a": {
+      "0": 0.005606310389372196,
+      "1": 0.9938149349540747,
+      "2": 0.0005217974208733165,
+      "3": 5.695723567988438e-05
+     },
+     "count_b": {
+      "0": 0.05428073209416531,
+      "1": 0.08217459794900231,
+      "2": 0.08051389101534533,
+      "3": 0.7830307789414871
+     },
+     "separate_p": 0.99876240106285,
+     "picture_p": 0.000369110561524103,
+     "closer": "cat",
+     "closer_order": [
+      "cat",
+      "book"
+     ],
+     "stacked_p": 0.1018368732085001,
+     "overall_p": 0.03653758262720596,
+     "describe": "The cat is on top of the book, and they are touching."
+    },
+    {
+     "count_a": {
+      "0": 0.0046824810277336345,
+      "1": 0.9946342938115214,
+      "2": 0.0006328605804788597,
+      "3": 5.036458026618149e-05
+     },
+     "count_b": {
+      "0": 0.05363337822619187,
+      "1": 0.08777751916884072,
+      "2": 0.04574582971218457,
+      "3": 0.8128432728927829
+     },
+     "separate_p": 0.9988239357432922,
+     "picture_p": 0.0016276968658597093,
+     "closer": "cat",
+     "closer_order": [
+      "book",
+      "cat"
+     ],
+     "stacked_p": 0.04920915303162901,
+     "overall_p": 0.03762341194203906,
+     "describe": "The cat is in front of the book, with its paws resting on the open pages."
+    },
+    {
+     "count_a": {
+      "0": 0.004769517262327119,
+      "1": 0.9917964526973605,
+      "2": 0.00326784385737436,
+      "3": 0.00016618618293791904
+     },
+     "count_b": {
+      "0": 0.027525506776155294,
+      "1": 0.03431673422427091,
+      "2": 0.013049955711961686,
+      "3": 0.9251078032876122
+     },
+     "separate_p": 0.9994123097062825,
+     "picture_p": 0.00018535815361545607,
+     "closer": "cat",
+     "closer_order": [
+      "cat",
+      "book"
+     ],
+     "stacked_p": 0.011824760637493716,
+     "overall_p": 0.308438584374699,
+     "describe": "The cat is in front of the book, and they do not overlap or touch."
+    },
+    {
+     "count_a": {
+      "0": 0.007852094524283489,
+      "1": 0.9913973285228364,
+      "2": 0.0007119051576277896,
+      "3": 3.8671795252364337e-05
+     },
+     "count_b": {
+      "0": 0.012340977560188168,
+      "1": 0.9837330198662806,
+      "2": 0.003842729453652632,
+      "3": 8.327311987861284e-05
+     },
+     "separate_p": 0.9983983528993557,
+     "picture_p": 0.0002708967927774461,
+     "closer": "cat",
+     "closer_order": [
+      "book",
+      "cat"
+     ],
+     "stacked_p": 0.011880342100113548,
+     "overall_p": 0.3294422873839699,
+     "describe": "The cat is in front of the book, and they are overlapping."
+    }
+   ],
+   "diagnose": [
+    {
+     "fails": [
+      "crowd"
+     ],
+     "ok": false,
+     "p_rel": 1.0,
+     "presence": 0.9404172721487448,
+     "overall": 0.03653758262720596,
+     "combined": 0.6391240423082318
+    },
+    {
+     "fails": [
+      "crowd"
+     ],
+     "ok": false,
+     "p_rel": 1.0,
+     "presence": 0.941935278022072,
+     "overall": 0.03762341194203906,
+     "combined": 0.6404979893287277
+    },
+    {
+     "fails": [
+      "crowd"
+     ],
+     "ok": false,
+     "p_rel": 1.0,
+     "presence": 0.9678362593412407,
+     "overall": 0.308438584374699,
+     "combined": 0.7480370343523934
+    },
+    {
+     "fails": [],
+     "ok": true,
+     "p_rel": 1.0,
+     "presence": 0.979903830437853,
+     "overall": 0.3294422873839699,
+     "combined": 0.7630833160865587
+    }
+   ],
+   "feedback": "Diagnosis of the 4 images generated from the current prompt (target: 'a cat in front of a book'):\n- image 1: problems: crowd. Seen: The cat is on top of the book, and they are touching.\n- image 2: problems: crowd. Seen: The cat is in front of the book, with its paws resting on the open pages.\n- image 3: problems: crowd. Seen: The cat is in front of the book, and they do not overlap or touch.\n- image 4: matches the description. Seen: The cat is in front of the book, and they are overlapping.\nSummary: 1/4 images match the description.\nProblems, most frequent first, with the fix to apply:\n- crowd in 3/4 images -> there are many copies of an object, overlapping each other: ask for exactly one cat and one book (e.g. 'a single cat', 'one book') and avoid plural words",
+   "dms": 0.1780104665819785,
+   "ops": 0.9575231599874776,
+   "score05": 0.567766813284728
+  },
+  {
+   "description": "a cat in front of a book",
+   "round": 2,
+   "prompt": "a single cat in front of one book, photo",
+   "judge": [
+    {
+     "count_a": {
+      "0": 0.0046897518964921225,
+      "1": 0.9948574095215045,
+      "2": 0.00041266293193263935,
+      "3": 4.0175650070820715e-05
+     },
+     "count_b": {
+      "0": 0.06023011143329054,
+      "1": 0.07166704795597925,
+      "2": 0.06547875450951769,
+      "3": 0.8026240861012125
+     },
+     "separate_p": 0.9991925932150337,
+     "picture_p": 0.00022702518988366608,
+     "closer": "cat",
+     "closer_order": [
+      "cat",
+      "book"
+     ],
+     "stacked_p": 0.04440703632743893,
+     "overall_p": 0.09610428327481811,
+     "describe": "The cat is in front of the book, with its paws resting on the open pages."
+    },
+    {
+     "count_a": {
+      "0": 0.006338879772614864,
+      "1": 0.9928491977875475,
+      "2": 0.0007321038211972168,
+      "3": 7.981861864045416e-05
+     },
+     "count_b": {
+      "0": 0.02987620915565635,
+      "1": 0.05575715885879272,
+      "2": 0.08795689602431163,
+      "3": 0.8264097359612392
+     },
+     "separate_p": 0.9991929473645925,
+     "picture_p": 0.0005893410850996872,
+     "closer": "cat",
+     "closer_order": [
+      "book",
+      "cat"
+     ],
+     "stacked_p": 0.045278839749749465,
+     "overall_p": 0.08112641182228265,
+     "describe": "The cat is in front of the book, with its paws resting on the open pages."
+    },
+    {
+     "count_a": {
+      "0": 0.004490137442863753,
+      "1": 0.9945261161485807,
+      "2": 0.0009215443874721761,
+      "3": 6.22020210832937e-05
+     },
+     "count_b": {
+      "0": 0.02545378591054632,
+      "1": 0.06666326330951938,
+      "2": 0.03403222640371808,
+      "3": 0.873850724376216
+     },
+     "separate_p": 0.9995329301757401,
+     "picture_p": 0.000140460223833554,
+     "closer": "cat",
+     "closer_order": [
+      "cat",
+      "book"
+     ],
+     "stacked_p": 0.002810678093426885,
+     "overall_p": 0.25526038147521735,
+     "describe": "The cat is in front of the book, and they do not overlap or touch."
+    },
+    {
+     "count_a": {
+      "0": 0.01213028732189459,
+      "1": 0.9781906235538254,
+      "2": 0.009382288367569156,
+      "3": 0.000296800756710998
+     },
+     "count_b": {
+      "0": 0.006185883808731844,
+      "1": 0.0197476894120627,
+      "2": 0.4453405443060276,
+      "3": 0.5287258824731779
+     },
+     "separate_p": 0.9970977993885525,
+     "picture_p": 0.0003824466256075735,
+     "closer": "cat",
+     "closer_order": [
+      "book",
+      "cat"
+     ],
+     "stacked_p": 0.02202095392589269,
+     "overall_p": 0.24948850267677736,
+     "describe": "The cat is in front of the book, with its paw resting on the open pages."
+    }
+   ],
+   "diagnose": [
+    {
+     "fails": [
+      "crowd"
+     ],
+     "ok": false,
+     "p_rel": 1.0,
+     "presence": 0.9353626009495376,
+     "overall": 0.09610428327481811,
+     "combined": 0.6556098283912978
+    },
+    {
+     "fails": [
+      "crowd"
+     ],
+     "ok": false,
+     "p_rel": 1.0,
+     "presence": 0.9639742927696281,
+     "overall": 0.08112641182228265,
+     "combined": 0.6696916657871795
+    },
+    {
+     "fails": [
+      "crowd"
+     ],
+     "ok": false,
+     "p_rel": 1.0,
+     "presence": 0.9701703676437693,
+     "overall": 0.25526038147521735,
+     "combined": 0.7318670389209186
+    },
+    {
+     "fails": [
+      "crowd"
+     ],
+     "ok": false,
+     "p_rel": 1.0,
+     "presence": 0.9817588654173134,
+     "overall": 0.24948850267677736,
+     "combined": 0.7376687445038014
+    }
+   ],
+   "feedback": "Diagnosis of the 4 images generated from the current prompt (target: 'a cat in front of a book'):\n- image 1: problems: crowd. Seen: The cat is in front of the book, with its paws resting on the open pages.\n- image 2: problems: crowd. Seen: The cat is in front of the book, with its paws resting on the open pages.\n- image 3: problems: crowd. Seen: The cat is in front of the book, and they do not overlap or touch.\n- image 4: problems: crowd. Seen: The cat is in front of the book, with its paw resting on the open pages.\nSummary: 0/4 images match the description.\nProblems, most frequent first, with the fix to apply:\n- crowd in 4/4 images -> there are many copies of an object, overlapping each other: ask for exactly one cat and one book (e.g. 'a single cat', 'one book') and avoid plural words",
+   "dms": 0.17049489481227387,
+   "ops": 0.9628165316950621,
+   "score05": 0.566655713253668
+  },
+  {
+   "description": "a cat in front of a book",
+   "round": 3,
+   "prompt": "a single cat, in front of one book, photo",
+   "judge": [
+    {
+     "count_a": {
+      "0": 0.005571814739024161,
+      "1": 0.9938434661346945,
+      "2": 0.0005315311515061348,
+      "3": 5.3187974775108705e-05
+     },
+     "count_b": {
+      "0": 0.051436939230377586,
+      "1": 0.036382397100207374,
+      "2": 0.12230432907246738,
+      "3": 0.7898763345969477
+     },
+     "separate_p": 0.9990958066441217,
+     "picture_p": 0.00026061346659845126,
+     "closer": "cat",
+     "closer_order": [
+      "cat",
+      "book"
+     ],
+     "stacked_p": 0.05215537571373298,
+     "overall_p": 0.045360079285762155,
+     "describe": "The cat is in front of the book, with its paws resting on the open pages."
+    },
+    {
+     "count_a": {
+      "0": 0.006036820462253998,
+      "1": 0.9934384270610057,
+      "2": 0.00048421338465307506,
+      "3": 4.0539092087146684e-05
+     },
+     "count_b": {
+      "0": 0.03974504707242464,
+      "1": 0.05985199275274489,
+      "2": 0.07991319970407301,
+      "3": 0.8204897604707574
+     },
+     "separate_p": 0.9992255403280602,
+     "picture_p": 0.0004413962692980584,
+     "closer": "cat",
+     "closer_order": [
+      "book",
+      "cat"
+     ],
+     "stacked_p": 0.02233229626962501,
+     "overall_p": 0.10957795063577933,
+     "describe": "The cat is in front of the book, with its paws resting on the open pages."
+    },
+    {
+     "count_a": {
+      "0": 0.003878875883008158,
+      "1": 0.9950191781999917,
+      "2": 0.0010290399826797835,
+      "3": 7.29059343203439e-05
+     },
+     "count_b": {
+      "0": 0.02933838495073547,
+      "1": 0.11419782107724946,
+      "2": 0.03482584341049022,
+      "3": 0.8216379505615249
+     },
+     "separate_p": 0.999654281467046,
+     "picture_p": 0.00011240783811462146,
+     "closer": "cat",
+     "closer_order": [
+      "cat",
+      "book"
+     ],
+     "stacked_p": 0.0031985854774340644,
+     "overall_p": 0.28659766100825546,
+     "describe": "The cat is in front of the book, and they do not overlap or touch."
+    },
+    {
+     "count_a": {
+      "0": 0.006239778738364742,
+      "1": 0.9931138637263452,
+      "2": 0.0006122075944318499,
+      "3": 3.414994085817251e-05
+     },
+     "count_b": {
+      "0": 0.006966197237604084,
+      "1": 0.03748712614361156,
+      "2": 0.5326250620127021,
+      "3": 0.4229216146060823
+     },
+     "separate_p": 0.999040895831395,
+     "picture_p": 0.00021998629359719067,
+     "closer": "book",
+     "closer_order": [
+      "book",
+      "cat"
+     ],
+     "stacked_p": 0.005478959877298758,
+     "overall_p": 0.21618932842487987,
+     "describe": "The cat is in front of the book, and they are not touching."
+    }
+   ],
+   "diagnose": [
+    {
+     "fails": [
+      "crowd"
+     ],
+     "ok": false,
+     "p_rel": 1.0,
+     "presence": 0.9432778431267325,
+     "overall": 0.045360079285762155,
+     "combined": 0.6439719218464091
+    },
+    {
+     "fails": [
+      "crowd"
+     ],
+     "ok": false,
+     "p_rel": 1.0,
+     "presence": 0.9544580661787613,
+     "overall": 0.10957795063577933,
+     "combined": 0.6728313609977673
+    },
+    {
+     "fails": [
+      "crowd"
+     ],
+     "ok": false,
+     "p_rel": 1.0,
+     "presence": 0.9668965391200883,
+     "overall": 0.28659766100825546,
+     "combined": 0.7401302464161441
+    },
+    {
+     "fails": [
+      "reversed"
+     ],
+     "ok": false,
+     "p_rel": 0.0,
+     "presence": 0.9868374915534416,
+     "overall": 0.21618932842487987,
+     "combined": 0.4010089399927738
+    }
+   ],
+   "feedback": "Diagnosis of the 4 images generated from the current prompt (target: 'a cat in front of a book'):\n- image 1: problems: crowd. Seen: The cat is in front of the book, with its paws resting on the open pages.\n- image 2: problems: crowd. Seen: The cat is in front of the book, with its paws resting on the open pages.\n- image 3: problems: crowd. Seen: The cat is in front of the book, and they do not overlap or touch.\n- image 4: problems: reversed. Seen: The cat is in front of the book, and they are not touching.\nSummary: 0/4 images match the description.\nProblems, most frequent first, with the fix to apply:\n- crowd in 3/4 images -> there are many copies of an object, overlapping each other: ask for exactly one cat and one book (e.g. 'a single cat', 'one book') and avoid plural words\n- reversed in 1/4 images -> the depth order is reversed: put the object that must be in front in the foreground and the other in the background, explicitly ('X in the foreground, Y behind it in the background')",
+   "dms": 0.1644312548386692,
+   "ops": 0.9628674849947559,
+   "score05": 0.5636493699167126
+  },
+  {
+   "description": "a cow behind a butterfly",
+   "round": 1,
+   "prompt": "a cow behind a butterfly",
+   "judge": [
+    {
+     "count_a": {
+      "0": 0.004996388554413343,
+      "1": 0.9947325244124899,
+      "2": 0.00023148177210008364,
+      "3": 3.960526099661885e-05
+     },
+     "count_b": {
+      "0": 0.0014608073309640692,
+      "1": 0.0009771695492778374,
+      "2": 0.012459951465279845,
+      "3": 0.9851020716544783
+     },
+     "separate_p": 0.99683032425814,
+     "picture_p": 0.0015677107384267524,
+     "closer": "cow",
+     "closer_order": [
+      "cow",
+      "butterfly"
+     ],
+     "stacked_p": 0.0016136976674417595,
+     "overall_p": 0.0009379262422323474,
+     "describe": "The cow and the butterflies are in front of each other, with the butterflies appearing to be on the cow's ears and head."
+    },
+    {
+     "count_a": {
+      "0": 0.004580285748334719,
+      "1": 0.9950132326838897,
+      "2": 0.0003512233732526253,
+      "3": 5.5258194522795826e-05
+     },
+     "count_b": {
+      "0": 0.02898667244631334,
+      "1": 0.014368395516665985,
+      "2": 0.039539985721822865,
+      "3": 0.9171049463151979
+     },
+     "separate_p": 0.9984770859189862,
+     "picture_p": 0.0009370451375657717,
+     "closer": "cow",
+     "closer_order": [
+      "butterfly",
+      "cow"
+     ],
+     "stacked_p": 5.500663053235882e-05,
+     "overall_p": 0.0006349653693958304,
+     "describe": "The cow is in front of the butterflies, and they do not overlap or touch."
+    },
+    {
+     "count_a": {
+      "0": 0.0038596382251608725,
+      "1": 0.995626794364042,
+      "2": 0.0004266088244410516,
+      "3": 8.695858635606387e-05
+     },
+     "count_b": {
+      "0": 0.027816194881442272,
+      "1": 0.10857927847879004,
+      "2": 0.010125678038646913,
+      "3": 0.8534788486011207
+     },
+     "separate_p": 0.9991481558018145,
+     "picture_p": 0.0008070733815697585,
+     "closer": "cow",
+     "closer_order": [
+      "cow",
+      "butterfly"
+     ],
+     "stacked_p": 0.00012082998143268976,
+     "overall_p": 0.000720352254230748,
+     "describe": "The cow and the butterflies are in front of the cow, with the butterflies overlapping the cow's head and body."
+    },
+    {
+     "count_a": {
+      "0": 0.004246442746135587,
+      "1": 0.9953722738207796,
+      "2": 0.0003337988833822165,
+      "3": 4.748454970251455e-05
+     },
+     "count_b": {
+      "0": 0.000850547635673193,
+      "1": 0.0005902459017906568,
+      "2": 0.011367055315721953,
+      "3": 0.9871921511468142
+     },
+     "separate_p": 0.9987452025112276,
+     "picture_p": 0.00046272239168605164,
+     "closer": "same",
+     "closer_order": [
+      "butterfly",
+      "cow"
+     ],
+     "stacked_p": 9.466163570757814e-05,
+     "overall_p": 0.003060870339081818,
+     "describe": "The cow is in front of the butterflies, and they do not overlap or touch."
+    }
+   ],
+   "diagnose": [
+    {
+     "fails": [
+      "crowd",
+      "reversed"
+     ],
+     "ok": false,
+     "p_rel": 0.0,
+     "presence": 0.9935501028756513,
+     "overall": 0.0009379262422323474,
+     "combined": 0.3314960097059612
+    },
+    {
+     "fails": [
+      "crowd",
+      "reversed"
+     ],
+     "ok": false,
+     "p_rel": 0.0,
+     "presence": 0.9665658090480495,
+     "overall": 0.0006349653693958304,
+     "combined": 0.3224002581391484
+    },
+    {
+     "fails": [
+      "crowd",
+      "reversed"
+     ],
+     "ok": false,
+     "p_rel": 0.0,
+     "presence": 0.9684315273424396,
+     "overall": 0.000720352254230748,
+     "combined": 0.32305062653222344
+    },
+    {
+     "fails": [
+      "crowd",
+      "same_depth"
+     ],
+     "ok": false,
+     "p_rel": 0.0,
+     "presence": 0.994906621420029,
+     "overall": 0.003060870339081818,
+     "combined": 0.33265583058637027
+    }
+   ],
+   "feedback": "Diagnosis of the 4 images generated from the current prompt (target: 'a cow behind a butterfly'):\n- image 1: problems: crowd, reversed. Seen: The cow and the butterflies are in front of each other, with the butterflies appearing to be on the cow's ears and head.\n- image 2: problems: crowd, reversed. Seen: The cow is in front of the butterflies, and they do not overlap or touch.\n- image 3: problems: crowd, reversed. Seen: The cow and the butterflies are in front of the cow, with the butterflies overlapping the cow's head and body.\n- image 4: problems: crowd, same_depth. Seen: The cow is in front of the butterflies, and they do not overlap or touch.\nSummary: 0/4 images match the description.\nProblems, most frequent first, with the fix to apply:\n- crowd in 4/4 images -> there are many copies of an object, overlapping each other: ask for exactly one cow and one butterfly (e.g. 'a single cow', 'one butterfly') and avoid plural words\n- reversed in 3/4 images -> the depth order is reversed: put the object that must be in front in the foreground and the other in the background, explicitly ('X in the foreground, Y behind it in the background')\n- same_depth in 1/4 images -> the objects stand side by side at the same distance: add depth cues ('X in the foreground, close to the camera; Y further back in the background'), a view from the front so one is closer than the other",
+   "dms": 0.0013385285512351858,
+   "ops": 0.9808635151715424,
+   "score05": 0.49110102186138876
+  },
+  {
+   "description": "a cow behind a butterfly",
+   "round": 2,
+   "prompt": "a single cow in the foreground, a butterfly behind it in the background, photo",
+   "judge": [
+    {
+     "count_a": {
+      "0": 0.006032449287968709,
+      "1": 0.9929232399950192,
+      "2": 0.000934070526623096,
+      "3": 0.00011024019038893079
+     },
+     "count_b": {
+      "0": 0.0006598674156886334,
+      "1": 0.019490383153041975,
+      "2": 0.9745530718775095,
+      "3": 0.005296677553759906
+     },
+     "separate_p": 0.9949981154707809,
+     "picture_p": 0.0005578236044528121,
+     "closer": "cow",
+     "closer_order": [
+      "cow",
+      "butterfly"
+     ],
+     "stacked_p": 0.0001197585242569705,
+     "overall_p": 0.0029142408569909017,
+     "describe": "The cow and the butterfly are in front of each other, with the butterfly on the cow's ear and the other butterfly in the air nearby."
+    },
+    {
+     "count_a": {
+      "0": 0.005972569120089371,
+      "1": 0.993591368219428,
+      "2": 0.0003890626327205063,
+      "3": 4.700002776219728e-05
+     },
+     "count_b": {
+      "0": 0.003067145847830184,
+      "1": 0.009083883799991657,
+      "2": 0.16146533817905567,
+      "3": 0.8263836321731225
+     },
+     "separate_p": 0.9954786547578002,
+     "picture_p": 0.00022888720413833977,
+     "closer": "cow",
+     "closer_order": [
+      "butterfly",
+      "cow"
+     ],
+     "stacked_p": 0.0001294875910135684,
+     "overall_p": 0.01131388784705582,
+     "describe": "The cow is in front of the butterfly, and they do not overlap or touch."
+    },
+    {
+     "count_a": {
+      "0": 0.008057045268889038,
+      "1": 0.9832132007457224,
+      "2": 0.006940720487081706,
+      "3": 0.0017890334983068036
+     },
+     "count_b": {
+      "0": 0.0036174285352670458,
+      "1": 0.0026584108705852015,
+      "2": 0.012916070572861772,
+      "3": 0.980808090021286
+     },
+     "separate_p": 0.9943628830399839,
+     "picture_p": 0.0006682303090720372,
+     "closer": "cow",
+     "closer_order": [
+      "cow",
+      "butterfly"
+     ],
+     "stacked_p": 9.6319197803371e-05,
+     "overall_p": 0.008292308510186887,
+     "describe": "The cow and the butterflies are in front of the cow, with the butterflies appearing to hover around it."
+    },
+    {
+     "count_a": {
+      "0": 0.003603367535109712,
+      "1": 0.5082594766603677,
+      "2": 0.4851251774104033,
+      "3": 0.0030119783941192483
+     },
+     "count_b": {
+      "0": 0.00241596705016196,
+      "1": 0.9925453026893416,
+      "2": 0.004875056679932146,
+      "3": 0.0001636735805643292
+     },
+     "separate_p": 0.9984598203774999,
+     "picture_p": 0.00021012529595115234,
+     "closer": "butterfly",
+     "closer_order": [
+      "butterfly",
+      "cow"
+     ],
+     "stacked_p": 0.00035593942801539623,
+     "overall_p": 0.12346782615712742,
+     "describe": "The cow is in front of the butterfly, and they do not overlap or touch."
+    }
+   ],
+   "diagnose": [
+    {
+     "fails": [
+      "reversed"
+     ],
+     "ok": false,
+     "p_rel": 0.0,
+     "presence": 0.9933116639130646,
+     "overall": 0.0029142408569909017,
+     "combined": 0.33207530159001847
+    },
+    {
+     "fails": [
+      "crowd",
+      "reversed"
+     ],
+     "ok": false,
+     "p_rel": 0.0,
+     "presence": 0.990978603772658,
+     "overall": 0.01131388784705582,
+     "combined": 0.3340974972065713
+    },
+    {
+     "fails": [
+      "crowd",
+      "reversed"
+     ],
+     "ok": false,
+     "p_rel": 0.0,
+     "presence": 0.9883546719813096,
+     "overall": 0.008292308510186887,
+     "combined": 0.33221566016383214
+    },
+    {
+     "fails": [],
+     "ok": true,
+     "p_rel": 1.0,
+     "presence": 0.9939893710319628,
+     "overall": 0.12346782615712742,
+     "combined": 0.7038155227403511
+    }
+   ],
+   "feedback": "Diagnosis of the 4 images generated from the current prompt (target: 'a cow behind a butterfly'):\n- image 1: problems: reversed. Seen: The cow and the butterfly are in front of each other, with the butterfly on the cow's ear and the other butterfly in the air nearby.\n- image 2: problems: crowd, reversed. Seen: The cow is in front of the butterfly, and they do not overlap or touch.\n- image 3: problems: crowd, reversed. Seen: The cow and the butterflies are in front of the cow, with the butterflies appearing to hover around it.\n- image 4: matches the description. Seen: The cow is in front of the butterfly, and they do not overlap or touch.\nSummary: 1/4 images match the description.\nProblems, most frequent first, with the fix to apply:\n- reversed in 3/4 images -> the depth order is reversed: put the object that must be in front in the foreground and the other in the background, explicitly ('X in the foreground, Y behind it in the background')\n- crowd in 2/4 images -> there are many copies of an object, overlapping each other: ask for exactly one cow and one butterfly (e.g. 'a single cow', 'one butterfly') and avoid plural words",
+   "dms": 0.03649706584284026,
+   "ops": 0.9916585776747487,
+   "score05": 0.5140778217587945
+  },
+  {
+   "description": "a cow behind a butterfly",
+   "round": 3,
+   "prompt": "a single cow in the foreground, one butterfly behind it in the background, photo",
+   "judge": [
+    {
+     "count_a": {
+      "0": 0.005948675752148662,
+      "1": 0.99322267590296,
+      "2": 0.0007396016620940234,
+      "3": 8.904668279727755e-05
+     },
+     "count_b": {
+      "0": 0.0006499287161274675,
+      "1": 0.012577342059495084,
+      "2": 0.9650883152211898,
+      "3": 0.021684414003187706
+     },
+     "separate_p": 0.9969646266054945,
+     "picture_p": 0.00020982232740408374,
+     "closer": "cow",
+     "closer_order": [
+      "cow",
+      "butterfly"
+     ],
+     "stacked_p": 0.0004047016610784903,
+     "overall_p": 0.0063562711503239305,
+     "describe": "The cow and the butterfly are in front of each other, with the butterfly on the cow's ear and the other butterfly on a flower in the foreground."
+    },
+    {
+     "count_a": {
+      "0": 0.00564477823170345,
+      "1": 0.9939895510351433,
+      "2": 0.00033771102231922165,
+      "3": 2.7959710834049504e-05
+     },
+     "count_b": {
+      "0": 0.005527964496923012,
+      "1": 0.8957051571779566,
+      "2": 0.0959601045585426,
+      "3": 0.002806773766577715
+     },
+     "separate_p": 0.9973822970997342,
+     "picture_p": 0.00023455984003454682,
+     "closer": "cow",
+     "closer_order": [
+      "butterfly",
+      "cow"
+     ],
+     "stacked_p": 0.00010593985141673042,
+     "overall_p": 0.0068048764448184204,
+     "describe": "The cow is in front of the butterfly, and they do not overlap or touch."
+    },
+    {
+     "count_a": {
+      "0": 0.013781290284426472,
+      "1": 0.9751517708347457,
+      "2": 0.007078956548916062,
+      "3": 0.003987982331911884
+     },
+     "count_b": {
+      "0": 0.0005565214487281697,
+      "1": 0.006753747857476457,
+      "2": 0.9730862237769249,
+      "3": 0.019603506916870527
+     },
+     "separate_p": 0.9972945542307161,
+     "picture_p": 0.00033107633578384417,
+     "closer": "cow",
+     "closer_order": [
+      "cow",
+      "butterfly"
+     ],
+     "stacked_p": 0.00011671836960183814,
+     "overall_p": 0.010077318452705559,
+     "describe": "The cow and the butterfly are in front of each other, with the butterfly to the left and slightly behind the cow."
+    },
+    {
+     "count_a": {
+      "0": 0.007452445055790834,
+      "1": 0.9919386190425095,
+      "2": 0.0005462784003287339,
+      "3": 6.265750137103103e-05
+     },
+     "count_b": {
+      "0": 0.0009373994848857549,
+      "1": 0.001707689035754697,
+      "2": 0.03681232985165265,
+      "3": 0.9605425816277068
+     },
+     "separate_p": 0.9982702186905316,
+     "picture_p": 0.00027804461372681657,
+     "closer": "butterfly",
+     "closer_order": [
+      "butterfly",
+      "cow"
+     ],
+     "stacked_p": 0.00012700332109840792,
+     "overall_p": 0.013541222021123548,
+     "describe": "The cow is in front of the butterflies, and they do not overlap or touch."
+    }
+   ],
+   "diagnose": [
+    {
+     "fails": [
+      "reversed"
+     ],
+     "ok": false,
+     "p_rel": 0.0,
+     "presence": 0.993405261746918,
+     "overall": 0.0063562711503239305,
+     "combined": 0.3332538442990806
+    },
+    {
+     "fails": [
+      "reversed"
+     ],
+     "ok": false,
+     "p_rel": 0.0,
+     "presence": 0.9888584614050314,
+     "overall": 0.0068048764448184204,
+     "combined": 0.3318877792832833
+    },
+    {
+     "fails": [
+      "reversed"
+     ],
+     "ok": false,
+     "p_rel": 0.0,
+     "presence": 0.98566985785048,
+     "overall": 0.010077318452705559,
+     "combined": 0.3319157254343952
+    },
+    {
+     "fails": [
+      "crowd"
+     ],
+     "ok": false,
+     "p_rel": 1.0,
+     "presence": 0.9916171413774797,
+     "overall": 0.013541222021123548,
+     "combined": 0.665591834925361
+    }
+   ],
+   "feedback": "Diagnosis of the 4 images generated from the current prompt (target: 'a cow behind a butterfly'):\n- image 1: problems: reversed. Seen: The cow and the butterfly are in front of each other, with the butterfly on the cow's ear and the other butterfly on a flower in the foreground.\n- image 2: problems: reversed. Seen: The cow is in front of the butterfly, and they do not overlap or touch.\n- image 3: problems: reversed. Seen: The cow and the butterfly are in front of each other, with the butterfly to the left and slightly behind the cow.\n- image 4: problems: crowd. Seen: The cow is in front of the butterflies, and they do not overlap or touch.\nSummary: 0/4 images match the description.\nProblems, most frequent first, with the fix to apply:\n- reversed in 3/4 images -> the depth order is reversed: put the object that must be in front in the foreground and the other in the background, explicitly ('X in the foreground, Y behind it in the background')\n- crowd in 1/4 images -> there are many copies of an object, overlapping each other: ask for exactly one cow and one butterfly (e.g. 'a single cow', 'one butterfly') and avoid plural words",
+   "dms": 0.009194922017242865,
+   "ops": 0.9898876805949772,
+   "score05": 0.49954130130611
+  }
+ ]
+}

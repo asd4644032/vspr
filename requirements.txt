@@ -1,0 +1,5 @@
+# Pipeline: Ollama + ComfyUI clients
+ollama>=0.5.1
+PyYAML>=6.0
+tqdm>=4.66
+Pillow>=10.0

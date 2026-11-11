@@ -1,0 +1,8 @@
+# Metrics and Hugging Face baselines (install a CUDA build of torch first if needed)
+-r requirements.txt
+torch>=2.2
+transformers>=4.48
+accelerate>=0.30
+openai>=1.40        # "gpt4" baseline only
+pytest>=8.0
+# UniDet (Spatial) runs inside a T2I-CompBench clone with its own environment (detectron2, spacy en_core_web_sm).

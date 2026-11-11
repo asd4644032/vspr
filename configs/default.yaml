@@ -1,0 +1,34 @@
+# VSPR default configuration (values used in the paper unless noted).
+# Any key can be overridden on the command line, e.g.
+#   python scripts/run_vspr.py --set llm.reasoner=deepseek-r1:14b t2i.backend=cascade
+
+run_name: null                 # default: <backend>_<reasoner>[_novqa]
+dataset: data/t2i_compbench/3d_spatial.txt
+output_root: outputs
+limit: null                    # use only the first N descriptions (debugging)
+
+vspr:
+  max_iterations: 3            # M  (M + 1 rounds including the initial image from D)
+  use_vqa: true                # false = "w/o VQA" ablation (no image inspection, output = last round)
+  dms_weight: 0.5              # a in phi_sco: s = a * DMS + (1 - a) * OPS
+
+llm:
+  host: http://127.0.0.1:11434
+  reasoner: llama3.1:8b        # phi_rea   (alt.: deepseek-r1:14b)
+  mllm: qwen2.5vl:7b           # phi_que / phi_ans: fixed questions; needs token logprobs from Ollama
+  think: auto                  # enable Ollama "think" for reasoning models only
+  retries: 3
+  options:                     # Ollama generation options of phi_rea (the MLLM always decodes greedily)
+    reasoner: {temperature: 0.6, top_p: 0.95, seed: 42, num_ctx: 8192}
+
+t2i:
+  backend: sdxl                # sdxl | cascade
+  comfy_url: http://127.0.0.1:8188
+  batch_size: 4                # B
+  base_seed: 42                # per-description seed = hash(base_seed, D), shared by all rounds/methods
+  negative: text, watermark    # fixed negative prompt (VSPR does not write negatives)
+  timeout: 1800
+  cache_dir: outputs/_image_cache
+
+baselines:
+  openai_model: gpt-4o         # "GPT4" baseline; key read from the OPENAI_API_KEY environment variable
