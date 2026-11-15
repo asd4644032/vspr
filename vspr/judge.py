@@ -29,6 +29,7 @@ from __future__ import annotations
 
 import contextlib
 import json
+import logging
 import math
 import re
 import time
@@ -36,6 +37,8 @@ from collections import Counter
 from typing import Any
 
 from .eval.spatial import parse_description
+
+log = logging.getLogger(__name__)
 
 SYSTEM_V4 = (
     "You are a careful visual inspector for text-to-image evaluation. Judge only what is visible in the "
@@ -85,11 +88,14 @@ class Judge:
         if client is None:
             import ollama  # imported lazily so tests run without the package
 
-            client = ollama.Client(host=host)
+            # timeout: a hung Ollama runner raises instead of blocking forever (then retried)
+            client = ollama.Client(host=host, timeout=300)
         self.model = model
         self.client = client
         self.system = SYSTEM_V4
-        self.logprobs = True  # switched off after the first failure
+        self.logprobs = True  # switched off only if the client does not support logprobs
+        self.retries = 3  # server errors are retried; then the item fails and is redone on the next run
+        self.retry_wait = 10.0  # seconds, times the attempt number
         self.thinking = False
         try:
             caps = self.client.show(model)
@@ -120,10 +126,17 @@ class Judge:
             kw["format"] = schema
         use_lp = logprobs and self.logprobs and not self.thinking
         if use_lp:
-            try:
-                return self.client.chat(**kw, logprobs=True, top_logprobs=10), True
-            except Exception:  # noqa: BLE001
-                self.logprobs = False
+            for attempt in range(1, self.retries + 1):
+                try:
+                    return self.client.chat(**kw, logprobs=True, top_logprobs=10), True
+                except TypeError:  # client without logprobs support: plain answers from now on
+                    self.logprobs = False
+                    break
+                except Exception as err:  # noqa: BLE001  server error (e.g. HTTP 500): retry, never
+                    if attempt == self.retries:  # fall back silently, DMS/OPS need probabilities
+                        raise
+                    log.warning("MLLM call failed (attempt %d/%d): %s", attempt, self.retries, err)
+                    time.sleep(self.retry_wait * attempt)
         return self.client.chat(**kw), False
 
     @staticmethod

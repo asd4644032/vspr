@@ -100,3 +100,33 @@ def test_same_object_presence():
     g = J.diagnose("a candle hidden by a candle", r)
     assert g["presence"] == pytest.approx(0.6 * 0.6) and g["fails"] == []
     assert J.image_scores("a candle hidden by a candle", r) == {"dms": 0.7, "ops": pytest.approx(0.36)}
+
+
+class _FlakyOllama(FakeOllama):
+    """Fails the first ``failures`` logprob calls with a server error (like an HTTP 500)."""
+
+    def __init__(self, failures: int):
+        super().__init__()
+        self.failures = failures
+
+    def chat(self, **kw):
+        if kw.get("logprobs") and self.failures > 0:
+            self.failures -= 1
+            raise RuntimeError("Internal Server Error (status code: 500)")
+        return super().chat(**kw)
+
+
+def test_server_error_is_retried_and_keeps_logprobs():
+    judge = J.Judge("m", client=_FlakyOllama(failures=2))
+    judge.retry_wait = 0
+    p = judge.yes_no("img.png", "Is there a cat?")
+    assert judge.logprobs and 0.0 < p < 1.0  # a probability, not a hard 0/1 answer
+    assert 0.0 < judge.yes_no("img.png", "Is there a dog?") < 1.0
+
+
+def test_persistent_server_error_fails_the_item():
+    judge = J.Judge("m", client=_FlakyOllama(failures=99))
+    judge.retry_wait = 0
+    with pytest.raises(RuntimeError):
+        judge.yes_no("img.png", "Is there a cat?")
+    assert judge.logprobs  # never switched to plain answers because of a server error

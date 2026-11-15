@@ -116,7 +116,8 @@ class OllamaLLM:
     def __post_init__(self) -> None:
         import ollama  # imported lazily so tests run without the package
 
-        self._client = ollama.Client(host=self.host)
+        # timeout: a hung Ollama runner fails the item (redone on the next run) instead of blocking
+        self._client = ollama.Client(host=self.host, timeout=600)
 
     def _think_flag(self, model: str) -> bool | None:
         if self.think == "auto":
