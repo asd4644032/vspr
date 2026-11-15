@@ -53,17 +53,21 @@ def generate(name: str, prompts: dict, cfg: dict, descs: list[str]) -> None:
     gen = factory.build_generator(cfg)
     B = int(cfg["t2i"]["batch_size"])
     out = resolve(cfg["output_root"]) / "eval" / cfg["t2i"]["backend"] / name
+    samples_dir = out / "samples"
+    existing = {p.name for p in samples_dir.iterdir()} if samples_dir.exists() else set()
     manifest = []
     for idx, d in enumerate(progress(descs, f"G {name}")):
-        try:
-            images = gen.generate(prompts[d], stable_seed(int(cfg["t2i"]["base_seed"]), d))
-        except Exception as err:  # noqa: BLE001
-            log.error("generation failed for %r: %s (re-run to retry)", d, err)
-            continue
-        for b, img in enumerate(images):
-            qid = idx * B + b
-            link_or_copy(img, out / "samples" / f"{d}_{qid:06d}.png")
-            manifest.append({"question_id": qid, "description": d, "prompt": prompts[d]})
+        fnames = [f"{d}_{idx * B + b:06d}.png" for b in range(B)]
+        if not all(f in existing for f in fnames):
+            try:
+                images = gen.generate(prompts[d], stable_seed(int(cfg["t2i"]["base_seed"]), d))
+            except Exception as err:  # noqa: BLE001
+                log.error("generation failed for %r: %s (re-run to retry)", d, err)
+                continue
+            for img, fname in zip(images, fnames):
+                link_or_copy(img, samples_dir / fname)
+        for b in range(B):
+            manifest.append({"question_id": idx * B + b, "description": d, "prompt": prompts[d]})
     write_json(out / "manifest.json", manifest)
     print(f"{name}: {len(manifest)} images -> {out}")
 
