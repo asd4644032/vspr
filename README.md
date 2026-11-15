@@ -155,7 +155,7 @@ python scripts/make_tables.py --eval-root outputs/eval --out outputs/tables.md
 | ITM | BLIP-2 image–text matching probability | `Salesforce/blip2-itm-vit-g` | ×1000 |
 | VQA | p(yes) − p(no), first answer token, for "Does this figure show ‘*D*’?" | BLIP VQA (VQAv2) | ×100 |
 | Spatial | UniDet 3D spatial score, 0.25·s₁ + 0.25·s₂ + 0.5·s_loc | UniDet + DPT (T2I-CompBench experts) | ×100 |
-| AS | LAION aesthetic predictor v1 (linear head) | CLIP ViT-L/14 | ×10 |
+| AS | LAION aesthetic predictor v2 (improved MLP; `--aesthetic v1` for the old linear head) | CLIP ViT-L/14 | ×10 |
 
 The caption is always the original description *D*. It is read from each method's `manifest.json`,
 never inferred from file order (the old evaluation paired `os.listdir` order with the prompt file

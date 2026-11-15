@@ -96,3 +96,20 @@ def test_unscorable_wallet():
     d = det(("book", (10, 10, 60, 60), 0.9))
     assert score_image("a book hidden by a wallet", d, depth_map((0, 0, 1, 1))) is None
     assert score_image("a book hidden by a wallet", d, depth_map((0, 0, 1, 1)), unscorable="zero") == 0.0
+
+
+def test_one_object_with_two_labels_is_not_a_pair():
+    # UniDet labels the same animal "rabbit" and "cat": that is one object, not "a rabbit hidden by a cat"
+    import numpy as np
+
+    from vspr.eval.spatial import score_image, select_pair
+
+    box = [100.0, 100.0, 300.0, 300.0]
+    det = {"width": 400, "height": 400, "boxes": [box, [100.5, 100.0, 300.0, 300.5]],
+           "labels": ["rabbit", "cat"], "label_ids": [0, 1], "scores": [1.0, 0.2]}
+    assert select_pair(det, ("rabbit",), ("cat",)) is None
+    assert score_image("a rabbit hidden by a cat", det, np.zeros((400, 400), np.float32)) == 0.0
+    # a real second object (partly overlapping) is still found
+    det["boxes"].append([200.0, 150.0, 380.0, 350.0])
+    det["labels"].append("cat"), det["label_ids"].append(1), det["scores"].append(0.9)
+    assert select_pair(det, ("rabbit",), ("cat",)) == (0, 2)

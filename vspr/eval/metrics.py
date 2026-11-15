@@ -131,18 +131,20 @@ class BLIPVQAScore:
 class AestheticScore:
     """LAION aesthetic predictor on the normalized CLIP ViT-L/14 image embedding, range ~1-10.
 
-    ``version="v1"`` (default): the linear head released with LAION-5B
-    (sa_0_4_vit_l_14_linear.pth), as in the original evaluate.py and the paper's citation.
-    ``version="v2"``: the "improved aesthetic predictor" MLP (sac+logos+ava1-l14-linearMSE.pth).
+    ``version="v2"`` (default, used in the paper): the "improved aesthetic predictor" MLP
+    (sac+logos+ava1-l14-linearMSE.pth, LAION aesthetic predictor v2).
+    ``version="v1"``: the linear head released with LAION-5B (sa_0_4_vit_l_14_linear.pth), as in
+    the original evaluate.py; kept for comparison with old numbers.
     """
 
     key = "AS"
     URLS = {"v1": AESTHETIC_V1_URL, "v2": AESTHETIC_URL}
     FILES = {"v1": "sa_0_4_vit_l_14_linear.pth", "v2": "sac+logos+ava1-l14-linearMSE.pth"}
 
-    def __init__(self, version: str = "v1", weights: str | Path | None = None, device: str | None = None):
+    def __init__(self, version: str = "v2", weights: str | Path | None = None, device: str | None = None):
         from transformers import CLIPModel, CLIPProcessor
 
+        self.version = version
         self.device = device or _device()
         self.clip = CLIPModel.from_pretrained("openai/clip-vit-large-patch14").eval().to(self.device)
         self.proc = CLIPProcessor.from_pretrained("openai/clip-vit-large-patch14")

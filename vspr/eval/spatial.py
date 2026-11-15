@@ -19,7 +19,8 @@ implementations are fixed and testable:
   "phone" matches "microphone"...) or the old manual rules (which mapped "phone" only to
   "telephone", "computer" only to "tablet computer" and could never match painting/bag);
 * the two objects must be two different detections (13 descriptions name the same class
-  twice, e.g. "a microwave in front of a microwave");
+  twice, e.g. "a microwave in front of a microwave"), and not one object that UniDet gave two
+  labels (boxes with IoU >= 0.9, see DUPLICATE_IOU);
 * the depth map is indexed as [y, x] (both earlier implementations used [x, y]);
 * boxes and depth map are in the same pixel coordinates (no hard-coded 480 -> 1024 rescale).
 
@@ -113,12 +114,25 @@ def mean_depth(depth: np.ndarray, box) -> float:
     return float(depth[y0:y1, x0:x1].mean())  # rows = y, columns = x
 
 
-def select_pair(det: dict, labels1, labels2):
-    """Highest s1 + s2 over pairs of *different* detections; None if impossible."""
-    names, scores = det["labels"], det["scores"]
+# UniDet's unified label space often gives one object several labels with (almost) the same
+# box (e.g. "rabbit" 1.0 and "cat" 0.1 on one animal; "alarm clock" + "telephone" on one fused
+# object). Such a pair is one object, not two: with IoU ~ 1 it would get s_loc = 1 whenever the
+# depth difference of two identical boxes happens to have the right sign. On the N2 images the
+# IoU of the selected pairs is bimodal (0.7-0.9: 6 pairs; >= 0.9: 20), so 0.9 separates them.
+DUPLICATE_IOU = 0.9
+
+
+def select_pair(det: dict, labels1, labels2, duplicate_iou: float = DUPLICATE_IOU):
+    """Highest s1 + s2 over pairs of *different* objects; None if impossible.
+
+    Two detections are the same object if they are the same detection or their boxes overlap
+    with IoU >= ``duplicate_iou``.
+    """
+    names, scores, boxes = det["labels"], det["scores"], det["boxes"]
     c1 = [i for i, n in enumerate(names) if n in labels1]
     c2 = [j for j, n in enumerate(names) if n in labels2]
-    pairs = [(i, j) for i, j in product(c1, c2) if i != j]
+    pairs = [(i, j) for i, j in product(c1, c2)
+             if i != j and box_iou(boxes[i], boxes[j]) < duplicate_iou]
     if not pairs:
         return None
     return max(pairs, key=lambda p: (scores[p[0]] + scores[p[1]], -p[0], -p[1]))

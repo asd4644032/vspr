@@ -15,6 +15,7 @@ Then build the tables with scripts/make_tables.py.
 from __future__ import annotations
 
 import argparse
+import functools
 import gc
 import statistics
 import sys
@@ -88,6 +89,8 @@ def main() -> None:
                     help="vspr: fixed scorer (vspr/eval/spatial.py); official: T2I-CompBench script as is")
     ap.add_argument("--spatial-unscorable", choices=["exclude", "zero"], default="exclude",
                     help="images whose object has no UniDet class (wallet): exclude from the mean or score 0")
+    ap.add_argument("--aesthetic", choices=["v1", "v2"], default="v2",
+                    help="LAION aesthetic predictor: v2 = improved MLP (paper), v1 = linear head (old numbers)")
     ap.add_argument("--force", action="store_true", help="recompute existing scores")
     args = ap.parse_args()
 
@@ -107,13 +110,21 @@ def main() -> None:
     if "VQA" in args.metrics:
         jobs.append((M.BLIPVQAScore, ("VQA",)))
     if "AS" in args.metrics:
-        jobs.append((M.AestheticScore, ("AS",)))
+        # AS.json of another predictor version must not be reused: scores/AS.version records it
+        for m in methods:
+            f, v = m / "scores" / "AS.json", m / "scores" / "AS.version"
+            if f.exists() and (not v.exists() or v.read_text().strip() != args.aesthetic):
+                print(f"  {m.name}: AS.json is not aesthetic {args.aesthetic}; recomputing")
+                f.unlink()
+        jobs.append((functools.partial(M.AestheticScore, version=args.aesthetic), ("AS",)))
 
     for cls, keys in jobs:  # load each model once, then score every method
-        print(f"[{'/'.join(keys)}] loading {cls.__name__}")
+        print(f"[{'/'.join(keys)}] loading {getattr(cls, 'func', cls).__name__}")
         scorer = cls()
         for m in methods:
             score_with(scorer, m, keys, args.batch_size, args.force)
+            if keys == ("AS",):
+                (m / "scores" / "AS.version").write_text(args.aesthetic)
         del scorer
         gc.collect()
         try:
