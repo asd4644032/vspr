@@ -55,7 +55,7 @@ def score_with(scorer, method: Path, keys: tuple[str, ...], batch_size: int, for
             out = {keys[0]: out}
         for k in keys:
             for (qid, _, _), v in zip(chunk, out[k]):
-                results[k][qid] = float(v)
+                results[k][qid] = None if v is None else float(v)  # None = not scorable
     for k in keys:
         write_json(out_files[k], results[k])
     print(f"  {method.name}: {', '.join(keys)} done ({len(rows)} images)")
@@ -91,6 +91,8 @@ def main() -> None:
                     help="images whose object has no UniDet class (wallet): exclude from the mean or score 0")
     ap.add_argument("--aesthetic", choices=["v1", "v2"], default="v2",
                     help="LAION aesthetic predictor: v2 = improved MLP (paper), v1 = linear head (old numbers)")
+    ap.add_argument("--allow-cpu", action="store_true",
+                    help="run the scorers without a GPU (slow; CPU fp32 scores differ slightly from GPU fp16)")
     ap.add_argument("--force", action="store_true", help="recompute existing scores")
     args = ap.parse_args()
 
@@ -102,6 +104,14 @@ def main() -> None:
 
     from vspr.eval import metrics as M
 
+    import torch
+
+    print(f"torch {torch.__version__}, CUDA available: {torch.cuda.is_available()}"
+          + (f" ({torch.cuda.get_device_name(0)})" if torch.cuda.is_available() else ""))
+    if not torch.cuda.is_available() and not args.allow_cpu and set(args.metrics) - {"Spatial"}:
+        sys.exit("No CUDA GPU in this environment (CPU-only PyTorch?). Install a CUDA build of torch, "
+                 "or pass --allow-cpu. Scores of one table must all come from the same device.")
+
     jobs = []
     if "CS" in args.metrics:
         jobs.append((M.CLIPScore, ("CS",)))
@@ -109,6 +119,13 @@ def main() -> None:
         jobs.append((M.BLIP2ITCITM, ("ITC", "ITM")))
     if "VQA" in args.metrics:
         jobs.append((M.BLIPVQAScore, ("VQA",)))
+    if "TIFA" in args.metrics:
+        from vspr.eval.tifa import QAS_PATH, TIFAScore
+
+        if QAS_PATH.exists():
+            jobs.append((TIFAScore, TIFAScore.keys))
+        else:
+            print(f"[TIFA] skipped: {QAS_PATH} not found (run scripts/tifa_questions.py first)")
     if "AS" in args.metrics:
         # AS.json of another predictor version must not be reused: scores/AS.version records it
         for m in methods:

@@ -5,4 +5,8 @@ transformers>=4.48
 accelerate>=0.30
 openai>=1.40        # "gpt4" baseline only
 pytest>=8.0
+word2number         # TIFA question filter
+sentencepiece       # TIFA (T5 tokenizer)
+protobuf            # TIFA (needed to read the T5 sentencepiece model in transformers 5)
+# bitsandbytes      # optional: scripts/tifa_questions.py --load-in-8bit
 # UniDet (Spatial) runs inside a T2I-CompBench clone with its own environment (detectron2, spacy en_core_web_sm).
