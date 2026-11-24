@@ -17,6 +17,8 @@ llm:
   reasoner: llama3.1:8b        # phi_rea   (alt.: deepseek-r1:14b)
   mllm: qwen2.5vl:7b           # phi_que / phi_ans: fixed questions; needs token logprobs from Ollama
   think: auto                  # enable Ollama "think" for reasoning models only
+  reasoner_system: auto        # where phi_rea's v5 rules go: system | user | auto (user for deepseek-r1,
+                               # following its model card; system otherwise, as in all Llama runs)
   retries: 3
   options:                     # Ollama generation options of phi_rea (the MLLM always decodes greedily)
     reasoner: {temperature: 0.6, top_p: 0.95, seed: 42, num_ctx: 8192}
