@@ -19,6 +19,19 @@ from .llm import LLMClient
 class RoleConfig:
     model: str
     options: dict
+    # where the v5 rules go: "system" (a system message) or "user" (prepended to the user message).
+    # DeepSeek-R1's model card advises against system prompts, so llm.reasoner_system = auto picks
+    # "user" for it (vspr.factory.system_placement); Llama 3.1 keeps the system message of the paper.
+    system_placement: str = "system"
+
+
+def reasoner_messages(system: str, user: str, placement: str = "system") -> list[dict]:
+    """Chat messages for phi_rea; ``placement="user"`` sends no system message."""
+    if placement == "system":
+        return [{"role": "system", "content": system}, {"role": "user", "content": user}]
+    if placement == "user":
+        return [{"role": "user", "content": f"{system}\n\n{user}"}]
+    raise ValueError(f"system_placement must be 'system' or 'user', not {placement!r}")
 
 
 # ------------------------------------------------------------ phi_que / phi_ans
@@ -43,13 +56,15 @@ def phi_rea(
     without it (w/o VQA ablation) it only sees D and the current prompt.
     """
     mode = "vqa" if use_vqa else "novqa"
-    messages = [{"role": "system", "content": P.v5_system(mode, batch)},
-                {"role": "user", "content": P.v5_user(description, prompt, feedback if use_vqa else None)}]
+    messages = reasoner_messages(P.v5_system(mode, batch),
+                                 P.v5_user(description, prompt, feedback if use_vqa else None),
+                                 role.system_placement)
     res = llm.chat_json(role.model, messages, P.REASON_SCHEMA, role.options)
     raw_prompt = " ".join(str(res.data.get("prompt", "")).split()) or prompt
     next_prompt, truncated = P.truncate_prompt(raw_prompt)
     return {
         "mode": mode,
+        "system_placement": role.system_placement,
         "explanation": str(res.data.get("explanation", "")).strip(),
         "raw_thinking": res.thinking,  # DeepSeek-R1 <think> trace; empty for Llama 3.1
         "raw_output": res.raw,

@@ -49,9 +49,19 @@ def build_llm(cfg: dict) -> OllamaLLM:
     return OllamaLLM(host=llm["host"], retries=int(llm["retries"]), think=llm.get("think", "auto"))
 
 
+def system_placement(model: str, setting: str = "auto") -> str:
+    """``auto``: rules in the user message for DeepSeek-R1 (its model card: no system prompt), else system."""
+    if setting == "auto":
+        return "user" if "deepseek-r1" in model.lower() else "system"
+    if setting not in ("system", "user"):
+        raise ValueError(f"llm.reasoner_system must be auto, system or user, not {setting!r}")
+    return setting
+
+
 def build_reasoner(cfg: dict) -> RoleConfig:
     llm = cfg["llm"]
-    return RoleConfig(llm["reasoner"], dict(llm.get("options", {}).get("reasoner", {})))
+    return RoleConfig(llm["reasoner"], dict(llm.get("options", {}).get("reasoner", {})),
+                      system_placement(llm["reasoner"], str(llm.get("reasoner_system", "auto"))))
 
 
 def build_judge(cfg: dict) -> Judge:

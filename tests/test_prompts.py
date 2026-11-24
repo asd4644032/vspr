@@ -63,3 +63,20 @@ def test_empty_prompt_falls_back_to_current():
     llm = RecordingLLM({"explanation": "e", "prompt": "  "})
     out = phi_rea(llm, RoleConfig("m", {}), "a cat behind a dog", "old prompt", "fb", 4)
     assert out["next_prompt"] == "old prompt"
+
+
+def test_rules_in_user_message_for_deepseek():
+    from vspr.factory import system_placement
+    from vspr.functions import reasoner_messages
+
+    assert system_placement("llama3.1:8b") == "system"
+    assert system_placement("deepseek-r1:14b") == "user"
+    assert system_placement("deepseek-r1:14b", "system") == "system"
+    sys_msg, user_msg = P.v5_system("vqa", 4), P.v5_user("a cat behind a dog", "p", "fb")
+    assert reasoner_messages(sys_msg, user_msg) == [{"role": "system", "content": sys_msg},
+                                                   {"role": "user", "content": user_msg}]
+    llm = RecordingLLM({"explanation": "e", "prompt": "a dog in front of a cat, photo"})
+    out = phi_rea(llm, RoleConfig("deepseek-r1:14b", {}, "user"), "a cat behind a dog", "p", "fb", 4)
+    (msgs, _, _), = llm.messages
+    assert msgs == [{"role": "user", "content": sys_msg + "\n\n" + user_msg}]
+    assert out["system_placement"] == "user"
